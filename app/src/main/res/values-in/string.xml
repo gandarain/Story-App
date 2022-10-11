@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Story</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">DAFTAR</string>
+    <string name="email_hint">Masukkan email anda</string>
+    <string name="password_hint">Masukkan password anda</string>
+</resources>
