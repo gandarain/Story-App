@@ -11,4 +11,5 @@
     <string name="name_hint">Masukkan nama anda</string>
     <string name="confirm_password">Konfirmasi Sandi</string>
     <string name="confirm_password_hint">Masukkan konfirmasi sandi anda</string>
+    <string name="back">Kembali</string>
 </resources>
