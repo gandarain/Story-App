@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StoryApp">
         <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreenActivity"
             android:exported="true"
             android:theme="@style/SplashScreen">
