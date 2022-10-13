@@ -6,4 +6,8 @@
     <string name="register">Register</string>
     <string name="email_hint">Insert your email</string>
     <string name="password_hint">Insert your password</string>
+    <string name="name">Name</string>
+    <string name="name_hint">Insert your name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="confirm_password_hint">Insert your confirm password</string>
 </resources>

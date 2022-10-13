@@ -2,9 +2,13 @@
 <resources>
     <string name="app_name">Story</string>
     <string name="email">Email</string>
-    <string name="password">Password</string>
+    <string name="password">Sandi</string>
     <string name="login">Login</string>
     <string name="register">DAFTAR</string>
     <string name="email_hint">Masukkan email anda</string>
-    <string name="password_hint">Masukkan password anda</string>
+    <string name="password_hint">Masukkan sandi anda</string>
+    <string name="name">Nama</string>
+    <string name="name_hint">Masukkan nama anda</string>
+    <string name="confirm_password">Konfirmasi Sandi</string>
+    <string name="confirm_password_hint">Masukkan konfirmasi sandi anda</string>
 </resources>
