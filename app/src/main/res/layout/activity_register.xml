@@ -59,7 +59,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameTextView"
-        app:startIconDrawable="@drawable/ic_email"
+        app:startIconDrawable="@drawable/ic_person"
         app:errorEnabled="true"
         app:errorTextColor="@color/primaryColor">
 
@@ -112,7 +112,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:text="@string/password"
+        android:text="@string/confirm_password"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout" />
@@ -137,7 +137,7 @@
             android:inputType="textPassword"
             app:passwordToggleEnabled="true"
             tools:ignore="SpeakableTextPresentCheck"
-            android:hint="@string/password_hint"/>
+            android:hint="@string/confirm_password_hint"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

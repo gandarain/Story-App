@@ -4,7 +4,7 @@
     <string name="email">Email</string>
     <string name="password">Sandi</string>
     <string name="login">Login</string>
-    <string name="register">DAFTAR</string>
+    <string name="register">Daftar</string>
     <string name="email_hint">Masukkan email anda</string>
     <string name="password_hint">Masukkan sandi anda</string>
     <string name="name">Nama</string>
