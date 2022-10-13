@@ -3,13 +3,18 @@ package com.dicoding.storyapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import com.dicoding.storyapp.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityRegisterBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setupToolbar()
+        backButtonHandler()
     }
 
     private fun setupToolbar() {
@@ -20,5 +25,11 @@ class RegisterActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         finish()
         return true
+    }
+
+    private fun backButtonHandler() {
+        binding.backButton.setOnClickListener {
+            finish()
+        }
     }
 }
