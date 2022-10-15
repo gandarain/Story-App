@@ -7,6 +7,7 @@ import android.view.View
 import androidx.activity.viewModels
 import com.dicoding.storyapp.MainActivity
 import com.dicoding.storyapp.RegisterActivity
+import com.dicoding.storyapp.custom_view.ErrorDialog
 import com.dicoding.storyapp.databinding.ActivityLoginBinding
 import com.dicoding.storyapp.model.LoginResponse
 
@@ -29,6 +30,10 @@ class LoginActivity : AppCompatActivity() {
 
         loginViewModel.loginResponse.observe(this@LoginActivity) {
             loginHandler(it)
+        }
+
+        loginViewModel.isError.observe(this@LoginActivity) {
+            errorHandler(it)
         }
     }
 
@@ -67,6 +72,12 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
+        }
+    }
+
+    private fun errorHandler(isError: Boolean) {
+        if (isError) {
+            ErrorDialog(this).show()
         }
     }
 }

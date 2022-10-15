@@ -8,13 +8,11 @@
 
     <include
         android:id="@+id/loginLayout"
-        layout="@layout/login_layout"
-        tools:visibility="gone"/>
+        layout="@layout/login_layout"/>
 
     <include
         android:id="@+id/loadingLayout"
         layout="@layout/loading_layout"
-        android:visibility="gone"
-        tools:visibility="visible"/>
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

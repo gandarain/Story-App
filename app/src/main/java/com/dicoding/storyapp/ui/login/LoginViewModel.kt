@@ -26,10 +26,10 @@ class LoginViewModel: ViewModel() {
         val client = ApiConfig.getApiService().login(email, password)
         client.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                _isLoading.value = false
                 if (response.body()?.error == false) {
-                    _isError.value = false
                     _loginResponse.value = response.body()
+                    _isError.value = false
+                    _isLoading.value = false
                 } else {
                     _isError.value = true
                     _isLoading.value = false

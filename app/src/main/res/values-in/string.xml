@@ -12,4 +12,11 @@
     <string name="confirm_password">Konfirmasi Sandi</string>
     <string name="confirm_password_hint">Masukkan konfirmasi sandi anda</string>
     <string name="back">Kembali</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="error_message">Terjadi kesalahan pada server kami.\nMohon coba lagi nanti.</string>
+    <string name="image_error">image_error</string>
+    <string name="ok">Oke</string>
 </resources>
