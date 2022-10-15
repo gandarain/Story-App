@@ -14,8 +14,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         
         hideActionBar()
-
         registerButtonHandler()
+        loginButtonHandler()
     }
 
     private fun hideActionBar() {
@@ -26,6 +26,14 @@ class LoginActivity : AppCompatActivity() {
         binding.registerButton.setOnClickListener {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun loginButtonHandler() {
+        binding.loginButton.setOnClickListener {
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }

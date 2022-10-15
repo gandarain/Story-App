@@ -11,4 +11,8 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="confirm_password_hint">Insert your confirm password</string>
     <string name="back">Back</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
