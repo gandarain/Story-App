@@ -6,8 +6,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import com.dicoding.storyapp.MainActivity
+import com.dicoding.storyapp.R
+import com.dicoding.storyapp.custom_view.CustomAlertDialog
 import com.dicoding.storyapp.ui.register.RegisterActivity
-import com.dicoding.storyapp.custom_view.ErrorDialog
 import com.dicoding.storyapp.databinding.ActivityLoginBinding
 import com.dicoding.storyapp.model.LoginResponse
 
@@ -77,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun errorHandler(isError: Boolean) {
         if (isError) {
-            ErrorDialog(this).show()
+            CustomAlertDialog(this, R.string.error_message, R.drawable.error).show()
         }
     }
 }

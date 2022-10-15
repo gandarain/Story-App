@@ -12,6 +12,7 @@
     <include
         android:id="@+id/loadingLayout"
         layout="@layout/loading_layout"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        tools:visibility="visible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

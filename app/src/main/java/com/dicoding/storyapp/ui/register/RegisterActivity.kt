@@ -3,8 +3,10 @@ package com.dicoding.storyapp.ui.register
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.viewModels
 import com.dicoding.storyapp.R
+import com.dicoding.storyapp.custom_view.CustomAlertDialog
 import com.dicoding.storyapp.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
@@ -18,6 +20,19 @@ class RegisterActivity : AppCompatActivity() {
 
         setupToolbar()
         backButtonHandler()
+        registerButtonHandler()
+
+        registerViewModel.isLoading.observe(this@RegisterActivity) {
+            showLoading(it)
+        }
+
+        registerViewModel.isSuccess.observe(this@RegisterActivity) {
+            registerHandler(it)
+        }
+
+        registerViewModel.isError.observe(this@RegisterActivity) {
+            errorHandler(it)
+        }
     }
 
     private fun setupToolbar() {
@@ -31,8 +46,40 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun backButtonHandler() {
-        binding.backButton.setOnClickListener {
+        binding.registerLayout.backButton.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.loadingLayout.root.visibility = View.VISIBLE
+            binding.registerLayout.root.visibility = View.GONE
+        } else {
+            binding.loadingLayout.root.visibility = View.GONE
+            binding.registerLayout.root.visibility = View.VISIBLE
+        }
+    }
+
+    private fun errorHandler(isError: Boolean) {
+        if (isError) {
+            CustomAlertDialog(this, R.string.error_message, R.drawable.error).show()
+        }
+    }
+
+    private fun registerHandler(isSuccess: Boolean) {
+        if (isSuccess) {
+            CustomAlertDialog(this, R.string.success_create_user, R.drawable.fantasy).show()
+        }
+    }
+
+    private fun registerButtonHandler() {
+        binding.registerLayout.registerButton.setOnClickListener {
+            val email = binding.registerLayout.emailEditText.text.toString()
+            val password = binding.registerLayout.passwordEditText.text.toString()
+            val name = binding.registerLayout.nameEditText.text.toString()
+
+            registerViewModel.postRegister(name, email, password)
         }
     }
 }

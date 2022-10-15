@@ -19,4 +19,5 @@
     <string name="error_message">Terjadi kesalahan pada server kami.\nMohon coba lagi nanti.</string>
     <string name="image_error">image_error</string>
     <string name="ok">Oke</string>
+    <string name="success_create_user">Berhasil mendaftarkan akun anda</string>
 </resources>

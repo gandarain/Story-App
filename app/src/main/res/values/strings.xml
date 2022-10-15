@@ -18,4 +18,5 @@
     <string name="error_message">Something wrong with our server.\nPlease try again later.</string>
     <string name="image_error">image_error</string>
     <string name="ok">Ok</string>
+    <string name="success_create_user">Success register your account</string>
 </resources>

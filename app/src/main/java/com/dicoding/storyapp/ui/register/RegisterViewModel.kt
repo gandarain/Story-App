@@ -10,18 +10,19 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class RegisterViewModel: ViewModel() {
-    private val _registerResponse = MutableLiveData<RegisterResponse>()
-    val registerResponse: LiveData<RegisterResponse> = _registerResponse
-
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _isError = MutableLiveData<Boolean>()
     val isError: LiveData<Boolean> = _isError
 
+    private val _isSuccess = MutableLiveData<Boolean>()
+    val isSuccess: LiveData<Boolean> = _isSuccess
+
     fun postRegister(name: String, email: String, password: String) {
         _isLoading.value = true
         _isError.value = false
+        _isSuccess.value = false
 
         val client = ApiConfig.getApiService().register(name, email, password)
         client.enqueue(object : Callback<RegisterResponse> {
@@ -29,12 +30,13 @@ class RegisterViewModel: ViewModel() {
                 call: Call<RegisterResponse>,
                 response: Response<RegisterResponse>
             ) {
+                _isLoading.value = false
                 if (response.body()?.error == false) {
-                    _registerResponse.value = response.body()
+                    _isSuccess.value = true
                     _isError.value = false
                 } else {
+                    _isSuccess.value = false
                     _isError.value = true
-                    _isLoading.value = false
                 }
             }
 
