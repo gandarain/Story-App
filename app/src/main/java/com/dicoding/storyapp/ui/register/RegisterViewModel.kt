@@ -1,17 +1,17 @@
-package com.dicoding.storyapp.ui.login
+package com.dicoding.storyapp.ui.register
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dicoding.storyapp.api.ApiConfig
-import com.dicoding.storyapp.model.LoginResponse
+import com.dicoding.storyapp.model.RegisterResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginViewModel: ViewModel() {
-    private val _loginResponse = MutableLiveData<LoginResponse>()
-    val loginResponse: LiveData<LoginResponse> = _loginResponse
+class RegisterViewModel: ViewModel() {
+    private val _registerResponse = MutableLiveData<RegisterResponse>()
+    val registerResponse: LiveData<RegisterResponse> = _registerResponse
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -19,15 +19,18 @@ class LoginViewModel: ViewModel() {
     private val _isError = MutableLiveData<Boolean>()
     val isError: LiveData<Boolean> = _isError
 
-    fun postLogin(email: String, password: String) {
+    fun postRegister(name: String, email: String, password: String) {
         _isLoading.value = true
         _isError.value = false
 
-        val client = ApiConfig.getApiService().login(email, password)
-        client.enqueue(object : Callback<LoginResponse> {
-            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+        val client = ApiConfig.getApiService().register(name, email, password)
+        client.enqueue(object : Callback<RegisterResponse> {
+            override fun onResponse(
+                call: Call<RegisterResponse>,
+                response: Response<RegisterResponse>
+            ) {
                 if (response.body()?.error == false) {
-                    _loginResponse.value = response.body()
+                    _registerResponse.value = response.body()
                     _isError.value = false
                 } else {
                     _isError.value = true
@@ -35,7 +38,7 @@ class LoginViewModel: ViewModel() {
                 }
             }
 
-            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
                 _isLoading.value = false
                 _isError.value = true
             }

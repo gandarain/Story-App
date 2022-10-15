@@ -1,12 +1,15 @@
-package com.dicoding.storyapp
+package com.dicoding.storyapp.ui.register
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.viewModels
+import com.dicoding.storyapp.R
 import com.dicoding.storyapp.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
+    private val registerViewModel by viewModels<RegisterViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

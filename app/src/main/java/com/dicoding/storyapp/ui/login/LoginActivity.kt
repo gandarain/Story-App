@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import com.dicoding.storyapp.MainActivity
-import com.dicoding.storyapp.RegisterActivity
+import com.dicoding.storyapp.ui.register.RegisterActivity
 import com.dicoding.storyapp.custom_view.ErrorDialog
 import com.dicoding.storyapp.databinding.ActivityLoginBinding
 import com.dicoding.storyapp.model.LoginResponse
