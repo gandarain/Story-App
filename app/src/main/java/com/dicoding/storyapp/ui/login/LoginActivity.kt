@@ -10,7 +10,9 @@ import com.dicoding.storyapp.R
 import com.dicoding.storyapp.custom_view.CustomAlertDialog
 import com.dicoding.storyapp.ui.register.RegisterActivity
 import com.dicoding.storyapp.databinding.ActivityLoginBinding
+import com.dicoding.storyapp.model.LoginModel
 import com.dicoding.storyapp.model.LoginResponse
+import com.dicoding.storyapp.preference.LoginPreference
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -70,9 +72,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun loginHandler(loginResponse: LoginResponse) {
         if (!loginResponse.error) {
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            saveLoginData(loginResponse)
+            navigateToHome()
         }
     }
 
@@ -80,5 +81,21 @@ class LoginActivity : AppCompatActivity() {
         if (isError) {
             CustomAlertDialog(this, R.string.error_message, R.drawable.error).show()
         }
+    }
+
+    private fun saveLoginData(loginResponse: LoginResponse) {
+        val loginPreference = LoginPreference(this)
+        val loginResult = loginResponse.loginResult
+        val loginModel = LoginModel(
+            name = loginResult.name, userId = loginResult.userId, token = loginResult.token
+        )
+
+        loginPreference.setLogin(loginModel)
+    }
+
+    private fun navigateToHome() {
+        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
