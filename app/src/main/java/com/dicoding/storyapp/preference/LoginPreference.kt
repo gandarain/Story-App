@@ -22,6 +22,11 @@ internal class LoginPreference(context: Context) {
         return LoginModel(userId, name, token)
     }
 
+    fun removeUser() {
+        val editor = preferences.edit().clear()
+        editor.apply()
+    }
+
     companion object {
         private const val PREFS_NAME = "login_pref"
         private const val NAME = "name"
