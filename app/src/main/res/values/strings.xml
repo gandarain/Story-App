@@ -20,4 +20,8 @@
     <string name="ok">Ok</string>
     <string name="success_create_user">Success register your account</string>
     <string name="user_image">User Image</string>
+    <string name="setting">Setting</string>
+    <string name="theme">Theme</string>
+    <string name="language">Language</string>
+    <string name="logout">Logout</string>
 </resources>

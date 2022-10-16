@@ -1,10 +1,11 @@
 package com.dicoding.storyapp.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.provider.Settings
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.storyapp.databinding.FragmentDashboardBinding
@@ -34,6 +35,7 @@ class ProfileFragment : Fragment() {
         loginModel = mLoginPreference.getUser()
 
         setupUi()
+        languageHandler()
 
         return root
     }
@@ -41,6 +43,12 @@ class ProfileFragment : Fragment() {
     private fun setupUi() {
         binding.nameTextView.text = loginModel.name
         binding.userIdTextView.text = loginModel.userId
+    }
+
+    private fun languageHandler() {
+        binding.languageCardView.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+        }
     }
 
     override fun onDestroyView() {

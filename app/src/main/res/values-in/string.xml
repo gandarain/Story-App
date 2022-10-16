@@ -21,4 +21,8 @@
     <string name="ok">Oke</string>
     <string name="success_create_user">Berhasil mendaftarkan akun anda</string>
     <string name="user_image">Gambar Pengguna</string>
+    <string name="setting">Pengaturan</string>
+    <string name="theme">Tema</string>
+    <string name="language">Bahasa</string>
+    <string name="logout">Keluar</string>
 </resources>

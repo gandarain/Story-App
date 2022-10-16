@@ -64,7 +64,7 @@
         android:id="@+id/settingTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Setting"
+        android:text="@string/setting"
         android:layout_margin="20dp"
         android:textStyle="bold"
         android:textSize="12sp"
@@ -72,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/card_view"/>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/languageCardView"
+        android:id="@+id/themeCardView"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Theme"
+                android:text="@string/theme"
                 android:textStyle="bold"
                 android:textSize="15sp"
                 android:gravity="center_vertical"
@@ -104,12 +104,12 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/themeCardView"
+        android:id="@+id/languageCardView"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/languageCardView"
+        app:layout_constraintTop_toBottomOf="@+id/themeCardView"
         android:layout_marginTop="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -120,7 +120,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Language"
+                android:text="@string/language"
                 android:textStyle="bold"
                 android:textSize="15sp"
                 android:gravity="center_vertical"
@@ -141,7 +141,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/themeCardView"
+        app:layout_constraintTop_toBottomOf="@+id/languageCardView"
         android:layout_marginTop="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -152,7 +152,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Logout"
+                android:text="@string/logout"
                 android:textStyle="bold"
                 android:textSize="15sp"
                 android:gravity="center_vertical"
