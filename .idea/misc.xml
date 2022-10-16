@@ -14,6 +14,7 @@
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/error_layout.xml" value="0.13402777777777777" />
+        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.335" />
         <entry key="app/src/main/res/layout/loading_layout.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/login_layout.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/register_layout.xml" value="0.13402777777777777" />

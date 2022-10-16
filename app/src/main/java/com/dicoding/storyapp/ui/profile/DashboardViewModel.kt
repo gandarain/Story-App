@@ -1,4 +1,4 @@
-package com.dicoding.storyapp.ui.dashboard
+package com.dicoding.storyapp.ui.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
