@@ -2,7 +2,6 @@ package com.dicoding.storyapp.custom_view
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.res.Resources
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
