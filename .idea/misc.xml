@@ -15,10 +15,12 @@
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/error_layout.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/loading_layout.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/login_layout.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/register_layout.xml" value="0.13402777777777777" />
+        <entry key="app/src/main/res/layout/story_layout.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/xml/button_bg.xml" value="0.15078125" />
       </map>
