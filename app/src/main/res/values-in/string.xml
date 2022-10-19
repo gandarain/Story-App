@@ -25,4 +25,5 @@
     <string name="language">Bahasa</string>
     <string name="logout">Keluar</string>
     <string name="title_stories">Stories</string>
+    <string name="empty_stories">Cerita tidak ditemukan</string>
 </resources>

@@ -24,4 +24,5 @@
     <string name="language">Language</string>
     <string name="logout">Logout</string>
     <string name="title_stories">Stories</string>
+    <string name="empty_stories">Stories is not found</string>
 </resources>

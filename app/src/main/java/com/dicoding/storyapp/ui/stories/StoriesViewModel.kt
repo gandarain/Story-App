@@ -44,7 +44,7 @@ class StoriesViewModel(application: Application) : AndroidViewModel(application)
                     _isLoading.value = false
                     _isError.value = false
                 } else {
-                    _isError.value = false
+                    _isError.value = true
                     _isLoading.value = false
                 }
             }

@@ -27,4 +27,11 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
+    <include
+        android:id="@+id/emptyStories"
+        layout="@layout/empty_stories"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

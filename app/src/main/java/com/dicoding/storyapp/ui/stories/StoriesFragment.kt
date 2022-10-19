@@ -31,7 +31,12 @@ class StoriesFragment : Fragment() {
         val root: View = binding.root
 
         homeViewModel.listStories.observe(viewLifecycleOwner) {
-            showListStories(root.context, it)
+            val isEmptyUser = it.isEmpty()
+            if (isEmptyUser) {
+                handlingEmptyUser(isEmptyUser)
+            } else {
+                showListStories(root.context, it)
+            }
         }
 
         homeViewModel.isLoading.observe(viewLifecycleOwner) {
@@ -72,6 +77,14 @@ class StoriesFragment : Fragment() {
 
         val listStoriesAdapter = ListStoriesAdapter(stories)
         storiesRv.adapter = listStoriesAdapter
+    }
+
+    private fun handlingEmptyUser(isEmptyUser: Boolean) {
+        if (isEmptyUser) {
+            binding.emptyStories.emptyStoriesConstraintLayout.visibility = View.VISIBLE
+        } else {
+            binding.emptyStories.emptyStoriesConstraintLayout.visibility - View.GONE
+        }
     }
 
     override fun onDestroyView() {
