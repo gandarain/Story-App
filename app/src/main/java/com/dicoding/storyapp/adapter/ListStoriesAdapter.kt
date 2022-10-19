@@ -34,7 +34,7 @@ class ListStoriesAdapter(private val listStories: List<Story>): RecyclerView.Ada
         val story: Story = listStories[position]
         Glide.with(holder.itemView.context)
             .load(story.photoUrl)
-            .thumbnail()
+            .fitCenter()
             .into(holder.storyImageView)
         holder.nameTextView.text = story.name
         holder.descriptionTextView.text = story.description

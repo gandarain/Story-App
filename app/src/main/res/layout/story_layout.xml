@@ -23,7 +23,9 @@
             android:layout_height="250dp"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/backgrounds/scenic"/>
+            tools:src="@tools:sample/backgrounds/scenic"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"/>
 
         <TextView
             android:id="@+id/nameTextView"
