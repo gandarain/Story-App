@@ -7,7 +7,7 @@
     tools:context=".ui.home.HomeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_users"
+        android:id="@+id/storiesRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
