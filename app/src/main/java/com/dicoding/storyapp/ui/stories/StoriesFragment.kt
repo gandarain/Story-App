@@ -1,4 +1,4 @@
-package com.dicoding.storyapp.ui.home
+package com.dicoding.storyapp.ui.stories
 
 import android.content.Context
 import android.os.Bundle
@@ -9,25 +9,25 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.dicoding.storyapp.R
 import com.dicoding.storyapp.custom_view.CustomAlertDialog
-import com.dicoding.storyapp.databinding.FragmentHomeBinding
 import com.dicoding.storyapp.model.Story
 import android.content.res.Configuration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.storyapp.adapter.ListStoriesAdapter
+import com.dicoding.storyapp.databinding.FragmentStoriesBinding
 
-class HomeFragment : Fragment() {
+class StoriesFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentStoriesBinding? = null
     private val binding get() = _binding!!
-    private val homeViewModel: HomeViewModel by activityViewModels()
+    private val homeViewModel: StoriesViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentStoriesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         homeViewModel.listStories.observe(viewLifecycleOwner) {

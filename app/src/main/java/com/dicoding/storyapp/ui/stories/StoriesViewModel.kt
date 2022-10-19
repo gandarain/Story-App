@@ -1,4 +1,4 @@
-package com.dicoding.storyapp.ui.home
+package com.dicoding.storyapp.ui.stories
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -12,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeViewModel(application: Application) : AndroidViewModel(application) {
+class StoriesViewModel(application: Application) : AndroidViewModel(application) {
     private val context = getApplication<Application>().applicationContext
 
     private val _listStories = MutableLiveData<List<Story>>()
