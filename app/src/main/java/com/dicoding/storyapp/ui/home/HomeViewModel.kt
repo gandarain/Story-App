@@ -15,8 +15,8 @@ import retrofit2.Response
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val context = getApplication<Application>().applicationContext
 
-    private val _listStories = MutableLiveData<Story>()
-    val listStories: LiveData<Story> = _listStories
+    private val _listStories = MutableLiveData<List<Story>>()
+    val listStories: LiveData<List<Story>> = _listStories
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
