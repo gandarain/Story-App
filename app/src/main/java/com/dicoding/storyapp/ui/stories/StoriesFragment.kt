@@ -1,6 +1,7 @@
 package com.dicoding.storyapp.ui.stories
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.storyapp.adapter.ListStoriesAdapter
 import com.dicoding.storyapp.databinding.FragmentStoriesBinding
+import com.dicoding.storyapp.ui.create_story.CreateStoryActivity
 
 class StoriesFragment : Fragment() {
 
@@ -46,6 +48,8 @@ class StoriesFragment : Fragment() {
         homeViewModel.isError.observe(viewLifecycleOwner) {
             errorHandler(root.context, it)
         }
+
+        createStoryButtonHandler()
 
         return root
     }
@@ -84,6 +88,13 @@ class StoriesFragment : Fragment() {
             binding.emptyStories.emptyStoriesConstraintLayout.visibility = View.VISIBLE
         } else {
             binding.emptyStories.emptyStoriesConstraintLayout.visibility - View.GONE
+        }
+    }
+
+    private fun createStoryButtonHandler() {
+        binding.createStoryButton.setOnClickListener {
+            val intent = Intent(binding.root.context, CreateStoryActivity::class.java)
+            startActivity(intent)
         }
     }
 
