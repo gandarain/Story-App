@@ -8,8 +8,9 @@
         <entry key="app/src/main/res/drawable/border.xml" value="0.149" />
         <entry key="app/src/main/res/drawable/button_bg.xml" value="0.149" />
         <entry key="app/src/main/res/drawable/ic_close.xml" value="0.149" />
+        <entry key="app/src/main/res/drawable/rounded_shape.xml" value="0.1505" />
         <entry key="app/src/main/res/drawable/splash_bg.xml" value="0.1505" />
-        <entry key="app/src/main/res/layout/activity_create_story.xml" value="0.13402777777777777" />
+        <entry key="app/src/main/res/layout/activity_create_story.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.13402777777777777" />

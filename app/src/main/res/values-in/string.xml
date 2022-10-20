@@ -28,4 +28,8 @@
     <string name="empty_stories">Cerita tidak ditemukan</string>
     <string name="floating_button">Tambah Cerita</string>
     <string name="create_story">Tambar Cerita</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="submit">Submit</string>
+    <string name="description_hint">Deskripsi</string>
 </resources>

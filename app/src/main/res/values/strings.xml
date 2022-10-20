@@ -27,4 +27,8 @@
     <string name="empty_stories">Stories is not found</string>
     <string name="floating_button">Create Story</string>
     <string name="create_story">Create Story</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="submit">Submit</string>
+    <string name="description_hint">Description</string>
 </resources>
