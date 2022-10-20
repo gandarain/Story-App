@@ -26,4 +26,5 @@
     <string name="title_stories">Stories</string>
     <string name="empty_stories">Stories is not found</string>
     <string name="floating_button">Create Story</string>
+    <string name="create_story">Create Story</string>
 </resources>
