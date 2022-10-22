@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.storyapp.databinding.StoryLayoutBinding
 import com.dicoding.storyapp.model.Story
+import com.dicoding.storyapp.utils.withDateFormat
 
 class ListStoriesAdapter(private val listStories: List<Story>): RecyclerView.Adapter<ListStoriesAdapter.ListViewHolder>() {
     class ListViewHolder(binding: StoryLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -36,9 +37,13 @@ class ListStoriesAdapter(private val listStories: List<Story>): RecyclerView.Ada
             .load(story.photoUrl)
             .fitCenter()
             .into(holder.storyImageView)
-        holder.nameTextView.text = story.name
-        holder.descriptionTextView.text = story.description
-        holder.dateTextView.text = story.createdAt
+        story.apply {
+            holder.apply {
+                nameTextView.text = name
+                descriptionTextView.text = description
+                dateTextView.text = createdAt.withDateFormat()
+            }
+        }
     }
 
     override fun getItemCount(): Int = listStories.size
