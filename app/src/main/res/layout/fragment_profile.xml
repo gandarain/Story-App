@@ -87,6 +87,7 @@
             <TextView
                 android:id="@+id/themeTextView"
                 style="@style/TextViewTheme"
+                android:text="@string/theme"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 card_view:drawableStartCompat="@drawable/ic_mode" />
@@ -119,6 +120,7 @@
 
             <TextView
                 style="@style/TextViewTheme"
+                android:text="@string/language"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 card_view:drawableStartCompat="@drawable/ic_language"
@@ -143,6 +145,7 @@
             android:padding="15dp">
 
             <TextView
+                android:text="@string/logout"
                 style="@style/TextViewTheme"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
