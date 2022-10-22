@@ -33,4 +33,6 @@
     <string name="submit">Submit</string>
     <string name="description_hint">Deskripsi</string>
     <string name="permission_denied">Anda perlu mengizinkan izin Kamera dan Penyimpanan untuk pengalaman yang lebih baik dengan aplikasi ini</string>
+    <string name="success_create_story">Cerita anda berhasil di buat!</string>
+    <string name="error_validation">Mohon isi semua data dengan benar!</string>
 </resources>

@@ -2,6 +2,7 @@ package com.dicoding.storyapp.ui.register
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
@@ -69,7 +70,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun registerHandler(isSuccess: Boolean) {
         if (isSuccess) {
-            CustomAlertDialog(this, R.string.success_create_user, R.drawable.fantasy).show()
+            CustomAlertDialog(this, R.string.success_create_user, R.drawable.user_created).show()
         }
     }
 
@@ -79,7 +80,11 @@ class RegisterActivity : AppCompatActivity() {
             val password = binding.registerLayout.passwordEditText.text.toString()
             val name = binding.registerLayout.nameEditText.text.toString()
 
-            registerViewModel.postRegister(name, email, password)
+            if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(name)) {
+                registerViewModel.postRegister(name, email, password)
+            } else {
+                CustomAlertDialog(this, R.string.error_validation, R.drawable.error_form).show()
+            }
         }
     }
 }

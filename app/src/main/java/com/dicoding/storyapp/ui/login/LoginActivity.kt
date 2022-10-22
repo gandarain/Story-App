@@ -3,6 +3,7 @@ package com.dicoding.storyapp.ui.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils.isEmpty
 import android.view.View
 import androidx.activity.viewModels
 import com.dicoding.storyapp.MainActivity
@@ -56,7 +57,11 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.loginLayout.emailEditText.text.toString()
             val password = binding.loginLayout.passwordEditText.text.toString()
 
-            loginViewModel.postLogin(email, password)
+            if (!isEmpty(email) && !isEmpty(password)) {
+                loginViewModel.postLogin(email, password)
+            } else {
+                CustomAlertDialog(this, R.string.error_validation, R.drawable.error_form).show()
+            }
         }
     }
 

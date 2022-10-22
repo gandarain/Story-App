@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.13402777777777777" />
+        <entry key="app/src/main/res/layout/create_story_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/empty_stories.xml" value="0.25" />
         <entry key="app/src/main/res/layout/error_layout.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.335" />
