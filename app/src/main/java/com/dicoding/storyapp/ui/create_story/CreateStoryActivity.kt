@@ -1,15 +1,19 @@
 package com.dicoding.storyapp.ui.create_story
 
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.dicoding.storyapp.R
 import com.dicoding.storyapp.constants.Constants
 import com.dicoding.storyapp.databinding.ActivityCreateStoryBinding
+import com.dicoding.storyapp.utils.uriToFile
 
 class CreateStoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreateStoryBinding
@@ -21,6 +25,7 @@ class CreateStoryActivity : AppCompatActivity() {
 
         setupToolbar()
         checkPermission()
+        buttonGalleryHandler()
     }
 
     private fun setupToolbar() {
@@ -58,6 +63,26 @@ class CreateStoryActivity : AppCompatActivity() {
                 Constants.REQUIRED_PERMISSIONS,
                 Constants.REQUEST_CODE_PERMISSIONS
             )
+        }
+    }
+
+    private fun buttonGalleryHandler() {
+        binding.galleryButton.setOnClickListener {
+            val intent = Intent()
+            intent.action = Intent.ACTION_GET_CONTENT
+            intent.type = "image/*"
+            val chooser = Intent.createChooser(intent, "Choose a Picture")
+            launcherIntentGallery.launch(chooser)
+        }
+    }
+
+    private val launcherIntentGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val selectedImg: Uri = result.data?.data as Uri
+            val myFile = uriToFile(selectedImg, this@CreateStoryActivity)
+            binding.imagePickerView.setImageURI(selectedImg)
         }
     }
 }
