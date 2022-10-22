@@ -34,4 +34,6 @@
     <string name="permission_denied">You need to allow Camera and Storage permissions for better experience with this app</string>
     <string name="success_create_story">Your story is created!</string>
     <string name="error_validation">Please make sure all the input field is correct!</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="light_mode">Light Mode</string>
 </resources>
