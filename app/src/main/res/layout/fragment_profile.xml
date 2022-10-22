@@ -41,8 +41,7 @@
                 card_view:layout_constraintTop_toTopOf="@+id/userImageView"
                 tools:text="Full Name"
                 android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/userIdTextView"
@@ -54,8 +53,7 @@
                 card_view:layout_constraintTop_toBottomOf="@+id/nameTextView"
                 tools:text="Username"
                 android:textSize="15sp"
-                android:textStyle="normal"
-                android:textColor="@color/black"/>
+                android:textStyle="normal"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -88,17 +86,10 @@
 
             <TextView
                 android:id="@+id/themeTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/theme"
-                android:textStyle="bold"
-                android:textSize="15sp"
-                android:gravity="center_vertical"
-                android:drawablePadding="10dp"
+                style="@style/TextViewTheme"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                card_view:drawableStartCompat="@drawable/ic_mode"
-                card_view:drawableTint="@color/black" />
+                card_view:drawableStartCompat="@drawable/ic_mode" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/switch_theme"
@@ -127,18 +118,11 @@
             android:padding="15dp">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/language"
-                android:textStyle="bold"
-                android:textSize="15sp"
-                android:gravity="center_vertical"
-                android:drawablePadding="10dp"
+                style="@style/TextViewTheme"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 card_view:drawableStartCompat="@drawable/ic_language"
-                card_view:drawableEndCompat="@drawable/ic_chevron_right"
-                card_view:drawableTint="@color/black" />
+                card_view:drawableEndCompat="@drawable/ic_chevron_right" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -159,18 +143,11 @@
             android:padding="15dp">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/logout"
-                android:textStyle="bold"
-                android:textSize="15sp"
-                android:gravity="center_vertical"
-                android:drawablePadding="10dp"
+                style="@style/TextViewTheme"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 card_view:drawableStartCompat="@drawable/ic_logout"
-                card_view:drawableEndCompat="@drawable/ic_chevron_right"
-                card_view:drawableTint="@color/black" />
+                card_view:drawableEndCompat="@drawable/ic_chevron_right" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

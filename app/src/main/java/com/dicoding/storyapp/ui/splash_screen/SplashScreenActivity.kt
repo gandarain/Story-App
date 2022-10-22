@@ -38,8 +38,8 @@ class SplashScreenActivity : AppCompatActivity() {
 
         loginModel = mLoginPreference.getUser()
 
-        splashScreenHandler()
         themeSettingHandler()
+        splashScreenHandler()
     }
 
     private fun splashScreenHandler() {

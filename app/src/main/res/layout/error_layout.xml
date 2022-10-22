@@ -23,7 +23,6 @@
         android:layout_marginTop="20dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
         android:gravity="center_horizontal"
         app:layout_constraintTop_toBottomOf="@+id/ivEmptyUser"
         app:layout_constraintStart_toStartOf="parent"/>
