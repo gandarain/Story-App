@@ -13,8 +13,8 @@ import java.io.InputStream
 import java.io.OutputStream
 import java.util.*
 import com.dicoding.storyapp.R
+import com.dicoding.storyapp.constants.Constants
 import java.text.SimpleDateFormat
-import java.text.DateFormat
 
 private const val FILENAME_FORMAT = "dd-MMM-yyyy"
 
@@ -91,10 +91,10 @@ fun uriToFile(selectedImg: Uri, context: Context): File {
 }
 
 fun String.withDateFormat(): String {
-    val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-    formatter.timeZone = TimeZone.getTimeZone("UTC")
-    val value = formatter.parse(this.toString())
-    val dateFormatter = SimpleDateFormat("dd-MMM-yyyy")
+    val formatter = SimpleDateFormat(Constants.UTC_FORMAT)
+    formatter.timeZone = TimeZone.getTimeZone(Constants.UTC_TIME_ZONE)
+    val value = formatter.parse(this) as Date
+    val dateFormatter = SimpleDateFormat(Constants.CREATED_DATE_FORMAT)
     dateFormatter.timeZone = TimeZone.getDefault()
     return dateFormatter.format(value)
 }
