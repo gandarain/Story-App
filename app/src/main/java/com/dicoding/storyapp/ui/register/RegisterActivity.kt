@@ -71,6 +71,10 @@ class RegisterActivity : AppCompatActivity() {
     private fun registerHandler(isSuccess: Boolean) {
         if (isSuccess) {
             CustomAlertDialog(this, R.string.success_create_user, R.drawable.user_created).show()
+            binding.registerLayout.emailEditText.text?.clear()
+            binding.registerLayout.passwordEditText.text?.clear()
+            binding.registerLayout.nameEditText.text?.clear()
+            binding.registerLayout.confirmPasswordEditText.text?.clear()
         }
     }
 

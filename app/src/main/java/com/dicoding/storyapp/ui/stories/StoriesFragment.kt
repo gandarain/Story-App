@@ -54,6 +54,11 @@ class StoriesFragment : Fragment() {
         return root
     }
 
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.getStories()
+    }
+
     private fun shodLoading(isLoading: Boolean) {
         if (isLoading) {
             binding.progressBar.visibility = View.VISIBLE

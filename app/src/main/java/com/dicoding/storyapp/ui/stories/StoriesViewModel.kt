@@ -28,7 +28,7 @@ class StoriesViewModel(application: Application) : AndroidViewModel(application)
         getStories()
     }
 
-    private fun getStories() {
+    fun getStories() {
         val token = LoginPreference(context).getUser().token
         _isError.value = false
         _isLoading.value = true
