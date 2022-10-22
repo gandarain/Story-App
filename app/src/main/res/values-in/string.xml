@@ -32,4 +32,5 @@
     <string name="gallery">Galeri</string>
     <string name="submit">Submit</string>
     <string name="description_hint">Deskripsi</string>
+    <string name="permission_denied">Anda perlu mengizinkan izin Kamera dan Penyimpanan untuk pengalaman yang lebih baik dengan aplikasi ini</string>
 </resources>

@@ -31,4 +31,5 @@
     <string name="gallery">Gallery</string>
     <string name="submit">Submit</string>
     <string name="description_hint">Description</string>
+    <string name="permission_denied">You need to allow Camera and Storage permissions for better experience with this app</string>
 </resources>
