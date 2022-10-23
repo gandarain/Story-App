@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.storyapp.databinding.StoryLayoutBinding
@@ -22,6 +23,7 @@ class ListStoriesAdapter(private val listStories: List<Story>): RecyclerView.Ada
         var nameTextView: TextView = binding.nameTextView
         var dateTextView: TextView = binding.dateTextView
         var descriptionTextView: TextView = binding.descriptionTextView
+        var storyCardView: CardView = binding.storyCardView
     }
 
     override fun onCreateViewHolder(
@@ -50,7 +52,7 @@ class ListStoriesAdapter(private val listStories: List<Story>): RecyclerView.Ada
                 dateTextView.text = createdAt.withDateFormat()
             }
         }
-        holder.storyImageView.setOnClickListener {
+        holder.storyCardView.setOnClickListener {
             onItemClickCallback.onItemClicked(listStories[holder.adapterPosition])
         }
     }

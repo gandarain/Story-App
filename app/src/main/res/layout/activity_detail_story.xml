@@ -1,90 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detail_story.DetailStoryActivity">
+    tools:context=".ui.detail_story.DetailStoryActivity"
+    android:fillViewport="true">
 
-    <ImageView
-        android:contentDescription="@string/user_image"
-        android:id="@+id/storyImageView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal2"
-        tools:src="@tools:sample/backgrounds/scenic"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"/>
+        android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineHorizontal2"
-        android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:contentDescription="@string/user_image"
+            android:id="@+id/storyImageView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal2"
+            tools:src="@tools:sample/backgrounds/scenic"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"/>
 
-    <TextView
-        android:id="@+id/titleNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal2"
-        android:text="Created By"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_margin="20dp"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineHorizontal2"
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_percent="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/nameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleNameTextView"
-        android:text="Ganda Rain Panjaitan"
-        android:textSize="15sp"
-        android:layout_marginHorizontal="20dp"/>
+        <TextView
+            android:id="@+id/titleNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal2"
+            android:text="Created By"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_margin="20dp"/>
 
-    <TextView
-        android:id="@+id/dateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleNameTextView"
-        android:text="Ganda Rain Panjaitan"
-        android:textSize="15sp"
-        android:layout_marginHorizontal="20dp"/>
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleNameTextView"
+            android:text="Ganda Rain Panjaitan"
+            android:textSize="15sp"
+            android:layout_marginHorizontal="20dp"/>
 
-    <TextView
-        android:id="@+id/descriptionTitleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameTextView"
-        android:text="Description"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_margin="20dp"/>
+        <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleNameTextView"
+            android:text="Ganda Rain Panjaitan"
+            android:textSize="15sp"
+            android:layout_marginHorizontal="20dp"/>
 
-    <TextView
-        android:id="@+id/descriptionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionTitleTextView"
-        android:text="Ganda Rain Panjaitan"
-        android:textSize="15sp"
-        android:layout_marginHorizontal="20dp"/>
+        <TextView
+            android:id="@+id/descriptionTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameTextView"
+            android:text="Description"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_margin="20dp"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="20dp"
-        android:text="@string/back"/>
+        <TextView
+            android:id="@+id/descriptionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionTitleTextView"
+            android:textSize="15sp"
+            android:paddingHorizontal="20dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

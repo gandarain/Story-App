@@ -2,6 +2,7 @@ package com.dicoding.storyapp.ui.detail_story
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.dicoding.storyapp.R
