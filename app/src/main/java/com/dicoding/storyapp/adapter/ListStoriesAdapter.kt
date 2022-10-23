@@ -11,6 +11,12 @@ import com.dicoding.storyapp.model.Story
 import com.dicoding.storyapp.utils.withDateFormat
 
 class ListStoriesAdapter(private val listStories: List<Story>): RecyclerView.Adapter<ListStoriesAdapter.ListViewHolder>() {
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     class ListViewHolder(binding: StoryLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
         var storyImageView: ImageView = binding.storyImageView
         var nameTextView: TextView = binding.nameTextView
@@ -44,7 +50,14 @@ class ListStoriesAdapter(private val listStories: List<Story>): RecyclerView.Ada
                 dateTextView.text = createdAt.withDateFormat()
             }
         }
+        holder.storyImageView.setOnClickListener {
+            onItemClickCallback.onItemClicked(listStories[holder.adapterPosition])
+        }
     }
 
     override fun getItemCount(): Int = listStories.size
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: Story)
+    }
 }

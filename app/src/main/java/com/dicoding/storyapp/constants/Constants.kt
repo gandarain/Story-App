@@ -8,4 +8,5 @@ object Constants {
     const val CREATED_DATE_FORMAT = "dd-MMM-yyyy"
     const val UTC_TIME_ZONE = "UTC"
     const val CAMERA_X_RESULT = 200
+    const val DETAIL_STORY = "DETAIL_STORY"
 }

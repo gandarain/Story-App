@@ -15,8 +15,10 @@ import android.content.res.Configuration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.storyapp.adapter.ListStoriesAdapter
+import com.dicoding.storyapp.constants.Constants
 import com.dicoding.storyapp.databinding.FragmentStoriesBinding
 import com.dicoding.storyapp.ui.create_story.CreateStoryActivity
+import com.dicoding.storyapp.ui.detail_story.DetailStoryActivity
 
 class StoriesFragment : Fragment() {
 
@@ -86,6 +88,18 @@ class StoriesFragment : Fragment() {
 
         val listStoriesAdapter = ListStoriesAdapter(stories)
         storiesRv.adapter = listStoriesAdapter
+
+        listStoriesAdapter.setOnItemClickCallback(object : ListStoriesAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: Story) {
+                navigateDetailStory(data)
+            }
+        })
+    }
+
+    private fun navigateDetailStory(story: Story) {
+        val intent = Intent(binding.root.context, DetailStoryActivity::class.java)
+        intent.putExtra(Constants.DETAIL_STORY, story)
+        startActivity(intent)
     }
 
     private fun handlingEmptyUser(isEmptyUser: Boolean) {

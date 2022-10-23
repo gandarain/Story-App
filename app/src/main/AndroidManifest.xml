@@ -41,6 +41,9 @@
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.detail_story.DetailStoryActivity"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
