@@ -37,4 +37,5 @@
     <string name="error_validation">Mohon isi semua data dengan benar!</string>
     <string name="dark_mode">Mode Gelap</string>
     <string name="light_mode">Mode Terang</string>
+    <string name="detail_story">Detail Cerita</string>
 </resources>

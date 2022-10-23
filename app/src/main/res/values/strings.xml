@@ -36,4 +36,5 @@
     <string name="error_validation">Please make sure all the input field is correct!</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="light_mode">Light Mode</string>
+    <string name="detail_story">Detail Story</string>
 </resources>

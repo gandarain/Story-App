@@ -3,6 +3,7 @@ package com.dicoding.storyapp.ui.detail_story
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import com.dicoding.storyapp.R
 import com.dicoding.storyapp.constants.Constants
 import com.dicoding.storyapp.databinding.ActivityDetailStoryBinding
@@ -18,5 +19,17 @@ class DetailStoryActivity : AppCompatActivity() {
 
         val detailStory = intent.getSerializableExtra(Constants.DETAIL_STORY) as? Story
         Log.d("DetailStoryActivity", detailStory.toString())
+
+        setupToolBar()
+    }
+
+    private fun setupToolBar() {
+        title = resources.getString(R.string.detail_story)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        finish()
+        return true
     }
 }
