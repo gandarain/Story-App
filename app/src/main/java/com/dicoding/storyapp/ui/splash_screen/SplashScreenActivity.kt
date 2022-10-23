@@ -12,7 +12,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.dicoding.storyapp.MainActivity
+import com.dicoding.storyapp.ui.main.MainActivity
 import com.dicoding.storyapp.constants.Constants
 import com.dicoding.storyapp.databinding.ActivitySplashScreenBinding
 import com.dicoding.storyapp.model.LoginModel
