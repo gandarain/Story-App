@@ -86,10 +86,10 @@ class ProfileFragment : Fragment() {
         ) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                themeTextView.text = context.getString(R.string.light_mode)
+                binding.switchTheme.isChecked = true
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                themeTextView.text = context.getString(R.string.dark_mode)
+                binding.switchTheme.isChecked = false
             }
 
         }

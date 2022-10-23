@@ -87,7 +87,7 @@
             <TextView
                 android:id="@+id/themeTextView"
                 style="@style/TextViewTheme"
-                android:text="@string/theme"
+                android:text="@string/dark_mode"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 card_view:drawableStartCompat="@drawable/ic_mode" />
