@@ -1,5 +1,6 @@
 package com.dicoding.storyapp.ui.stories
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +13,7 @@ import com.dicoding.storyapp.R
 import com.dicoding.storyapp.custom_view.CustomAlertDialog
 import com.dicoding.storyapp.model.Story
 import android.content.res.Configuration
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.storyapp.adapter.ListStoriesAdapter
@@ -99,7 +101,10 @@ class StoriesFragment : Fragment() {
     private fun navigateDetailStory(story: Story) {
         val intent = Intent(binding.root.context, DetailStoryActivity::class.java)
         intent.putExtra(Constants.DETAIL_STORY, story)
-        startActivity(intent)
+        startActivity(
+            intent,
+            ActivityOptionsCompat.makeSceneTransitionAnimation(binding.root.context as Activity).toBundle()
+        )
     }
 
     private fun handlingEmptyUser(isEmptyUser: Boolean) {
