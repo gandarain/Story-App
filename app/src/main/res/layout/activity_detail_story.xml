@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal2"
-            android:text="Created By"
+            android:text="@string/created_by"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_margin="20dp"/>
@@ -49,7 +49,6 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleNameTextView"
-            android:text="Ganda Rain Panjaitan"
             android:textSize="15sp"
             android:layout_marginHorizontal="20dp"/>
 
@@ -59,7 +58,6 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleNameTextView"
-            android:text="Ganda Rain Panjaitan"
             android:textSize="15sp"
             android:layout_marginHorizontal="20dp"/>
 
@@ -69,7 +67,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameTextView"
-            android:text="Description"
+            android:text="@string/description"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_margin="20dp"/>

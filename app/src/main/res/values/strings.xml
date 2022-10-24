@@ -37,4 +37,6 @@
     <string name="dark_mode">Dark Mode</string>
     <string name="light_mode">Light Mode</string>
     <string name="detail_story">Detail Story</string>
+    <string name="created_by">Created By</string>
+    <string name="description">Description</string>
 </resources>

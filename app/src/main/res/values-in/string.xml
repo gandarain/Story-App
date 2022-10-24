@@ -38,4 +38,6 @@
     <string name="dark_mode">Mode Gelap</string>
     <string name="light_mode">Mode Terang</string>
     <string name="detail_story">Detail Cerita</string>
+    <string name="created_by">Dibuat Oleh</string>
+    <string name="description">Deskripsi</string>
 </resources>
