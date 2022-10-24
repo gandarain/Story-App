@@ -12,4 +12,6 @@ object Constants {
     const val SUFFIX_IMAGE_FILE = ".jpg"
     const val SIZE_BYTE_ARRAY = 1024
     const val STREAM_LENGTH = 1000000
+    const val MIN_NAME = 6
+    const val MAX_NAME = 12
 }

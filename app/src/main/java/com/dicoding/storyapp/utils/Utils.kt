@@ -12,6 +12,7 @@ import java.util.*
 import com.dicoding.storyapp.constants.Constants
 import java.io.*
 import java.text.SimpleDateFormat
+import java.util.regex.Pattern
 
 private const val FILENAME_FORMAT = "dd-MMM-yyyy"
 
@@ -71,6 +72,6 @@ fun isValidEmail(email: String): Boolean {
     return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
 }
 
-fun validatePassword(password: String): Boolean {
+fun validateMinLength(password: String): Boolean {
     return !TextUtils.isEmpty(password) && password.length >= Constants.MIN_LENGTH_PASSWORD
 }

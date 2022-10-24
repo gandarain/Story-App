@@ -4,13 +4,18 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
+import android.util.Patterns
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import com.dicoding.storyapp.R
 import com.dicoding.storyapp.custom_view.CustomAlertDialog
 import com.dicoding.storyapp.databinding.ActivityRegisterBinding
+import com.dicoding.storyapp.utils.isValidEmail
+import com.dicoding.storyapp.utils.validateMinLength
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -25,6 +30,11 @@ class RegisterActivity : AppCompatActivity() {
         setupToolbar()
         backButtonHandler()
         registerButtonHandler()
+        setMyButtonEnable()
+        emailEditTextHandler()
+        nameEditTextHandler()
+        passwordEditTextHandler()
+        confirmationPasswordEditTextHandler()
 
         registerViewModel.isLoading.observe(this@RegisterActivity) {
             showLoading(it)
@@ -129,5 +139,74 @@ class RegisterActivity : AppCompatActivity() {
             )
             start()
         }
+    }
+
+    private fun setMyButtonEnable() {
+        val emailEditText = binding.registerLayout.emailEditText.text
+        val passwordEditText = binding.registerLayout.passwordEditText.text
+        val nameEditText = binding.registerLayout.nameEditText.text
+        val confirmationEditText = binding.registerLayout.confirmPasswordEditText.text
+        binding.registerLayout.registerButton.isEnabled =
+            isValidEmail(emailEditText.toString()) && validateMinLength(nameEditText.toString()) && validateMinLength(passwordEditText.toString()) && confirmationEditText.toString() == passwordEditText.toString()
+    }
+
+    private fun emailEditTextHandler() {
+        val emailEditText = binding.registerLayout.emailEditText
+        emailEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (isValidEmail(emailEditText.text.toString())) {
+                    emailEditText.error = null
+                } else {
+                    emailEditText.error = getString(R.string.invalid_email)
+                }
+                setMyButtonEnable()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+    }
+
+    private fun nameEditTextHandler() {
+        val nameEditText = binding.registerLayout.nameEditText
+        nameEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (validateMinLength(nameEditText.text.toString())) {
+                    nameEditText.error = null
+                } else {
+                    nameEditText.error = getString(R.string.invalid_name)
+                }
+                setMyButtonEnable()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+    }
+
+    private fun passwordEditTextHandler() {
+        binding.registerLayout.passwordEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                setMyButtonEnable()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+    }
+
+    private fun confirmationPasswordEditTextHandler() {
+        binding.registerLayout.confirmPasswordEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                setMyButtonEnable()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
     }
 }

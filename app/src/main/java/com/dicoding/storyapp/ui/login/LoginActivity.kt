@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils.isEmpty
 import android.text.TextWatcher
+import android.util.Patterns
 import android.view.View
 import androidx.activity.viewModels
 import com.dicoding.storyapp.ui.main.MainActivity
@@ -19,7 +20,7 @@ import com.dicoding.storyapp.model.LoginModel
 import com.dicoding.storyapp.model.LoginResponse
 import com.dicoding.storyapp.preference.LoginPreference
 import com.dicoding.storyapp.utils.isValidEmail
-import com.dicoding.storyapp.utils.validatePassword
+import com.dicoding.storyapp.utils.validateMinLength
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -146,14 +147,20 @@ class LoginActivity : AppCompatActivity() {
         val emailEditText = binding.loginLayout.emailEditText.text
         val passwordEditText = binding.loginLayout.passwordEditText.text
         binding.loginLayout.loginButton.isEnabled =
-            isValidEmail(emailEditText.toString()) && validatePassword(passwordEditText.toString())
+            isValidEmail(emailEditText.toString()) && validateMinLength(passwordEditText.toString())
     }
 
     private fun emailEditTextHandler() {
-        binding.loginLayout.emailEditText.addTextChangedListener(object : TextWatcher {
+        val emailEditText = binding.loginLayout.emailEditText
+        emailEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (isValidEmail(emailEditText.text.toString())) {
+                    emailEditText.error = null
+                } else {
+                    emailEditText.error = getString(R.string.invalid_email)
+                }
                 setMyButtonEnable()
             }
 

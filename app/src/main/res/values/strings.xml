@@ -39,4 +39,6 @@
     <string name="detail_story">Detail Story</string>
     <string name="created_by">Created By</string>
     <string name="description">Description</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="invalid_name">Invalid Name</string>
 </resources>

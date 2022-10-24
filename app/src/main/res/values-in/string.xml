@@ -40,4 +40,6 @@
     <string name="detail_story">Detail Cerita</string>
     <string name="created_by">Dibuat Oleh</string>
     <string name="description">Deskripsi</string>
+    <string name="invalid_email">Email tidak valid</string>
+    <string name="invalid_name">Nama tidak valid</string>
 </resources>
