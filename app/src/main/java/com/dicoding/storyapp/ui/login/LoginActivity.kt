@@ -5,7 +5,9 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils.isEmpty
+import android.text.TextWatcher
 import android.view.View
 import androidx.activity.viewModels
 import com.dicoding.storyapp.ui.main.MainActivity
@@ -16,6 +18,8 @@ import com.dicoding.storyapp.databinding.ActivityLoginBinding
 import com.dicoding.storyapp.model.LoginModel
 import com.dicoding.storyapp.model.LoginResponse
 import com.dicoding.storyapp.preference.LoginPreference
+import com.dicoding.storyapp.utils.isValidEmail
+import com.dicoding.storyapp.utils.validatePassword
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -30,6 +34,9 @@ class LoginActivity : AppCompatActivity() {
         hideActionBar()
         registerButtonHandler()
         loginButtonHandler()
+        setMyButtonEnable()
+        emailEditTextHandler()
+        passwordEditTextHandler()
 
         loginViewModel.isLoading.observe(this@LoginActivity) {
             showLoading(it)
@@ -133,5 +140,36 @@ class LoginActivity : AppCompatActivity() {
             playSequentially(emailTextView, emailEditTextLayout, emailEditText, passwordTextView, passwordEditTextLayout, passwordEditText, together)
             start()
         }
+    }
+
+    private fun setMyButtonEnable() {
+        val emailEditText = binding.loginLayout.emailEditText.text
+        val passwordEditText = binding.loginLayout.passwordEditText.text
+        binding.loginLayout.loginButton.isEnabled =
+            isValidEmail(emailEditText.toString()) && validatePassword(passwordEditText.toString())
+    }
+
+    private fun emailEditTextHandler() {
+        binding.loginLayout.emailEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                setMyButtonEnable()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+    }
+
+    private fun passwordEditTextHandler() {
+        binding.loginLayout.passwordEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                setMyButtonEnable()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
     }
 }

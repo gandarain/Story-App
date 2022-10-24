@@ -6,6 +6,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Environment
+import android.text.TextUtils
+import android.util.Patterns
 import java.util.*
 import com.dicoding.storyapp.constants.Constants
 import java.io.*
@@ -18,14 +20,9 @@ val timeStamp: String = SimpleDateFormat(
     Locale.US
 ).format(System.currentTimeMillis())
 
-fun createTempFile(context: Context): File {
-    val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-    return File.createTempFile(timeStamp, ".jpg", storageDir)
-}
-
 fun createCustomTempFile(context: Context): File {
     val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-    return File.createTempFile(timeStamp, ".jpg", storageDir)
+    return File.createTempFile(timeStamp, Constants.SUFFIX_IMAGE_FILE, storageDir)
 }
 
 fun uriToFile(selectedImg: Uri, context: Context): File {
@@ -34,7 +31,7 @@ fun uriToFile(selectedImg: Uri, context: Context): File {
 
     val inputStream = contentResolver.openInputStream(selectedImg) as InputStream
     val outputStream: OutputStream = FileOutputStream(myFile)
-    val buf = ByteArray(1024)
+    val buf = ByteArray(Constants.SIZE_BYTE_ARRAY)
     var len: Int
 
     while (inputStream.read(buf).also { len = it } > 0) outputStream.write(buf, 0, len)
@@ -64,8 +61,16 @@ fun reduceFileImage(file: File): File {
         val bmpPicByteArray = bmpStream.toByteArray()
         streamLength = bmpPicByteArray.size
         compressQuality -= 5
-    } while (streamLength > 1000000)
+    } while (streamLength > Constants.STREAM_LENGTH)
 
     bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
     return file
+}
+
+fun isValidEmail(email: String): Boolean {
+    return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+}
+
+fun validatePassword(password: String): Boolean {
+    return !TextUtils.isEmpty(password) && password.length >= Constants.MIN_LENGTH_PASSWORD
 }
