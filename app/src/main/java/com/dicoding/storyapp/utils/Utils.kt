@@ -12,7 +12,6 @@ import java.util.*
 import com.dicoding.storyapp.constants.Constants
 import java.io.*
 import java.text.SimpleDateFormat
-import java.util.regex.Pattern
 
 private const val FILENAME_FORMAT = "dd-MMM-yyyy"
 

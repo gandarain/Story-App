@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils.isEmpty
 import android.text.TextWatcher
-import android.util.Patterns
 import android.view.View
 import androidx.activity.viewModels
 import com.dicoding.storyapp.ui.main.MainActivity
