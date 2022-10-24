@@ -5,6 +5,8 @@
       <map>
         <entry key="../../../../../../layout/custom_preview.xml" value="0.22760416666666666" />
         <entry key="app/src/main/res/drawable-v23/splash_bg.xml" value="0.1505" />
+        <entry key="app/src/main/res/drawable/bg_button.xml" value="0.1505" />
+        <entry key="app/src/main/res/drawable/bg_button_disabled.xml" value="0.1505" />
         <entry key="app/src/main/res/drawable/border.xml" value="0.149" />
         <entry key="app/src/main/res/drawable/button_bg.xml" value="0.149" />
         <entry key="app/src/main/res/drawable/ic_close.xml" value="0.149" />
@@ -16,6 +18,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.13402777777777777" />
+        <entry key="app/src/main/res/layout/bg_button.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/create_story_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/empty_stories.xml" value="0.25" />
         <entry key="app/src/main/res/layout/error_layout.xml" value="0.13402777777777777" />

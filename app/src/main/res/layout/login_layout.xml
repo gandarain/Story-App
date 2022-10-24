@@ -87,14 +87,15 @@
             android:hint="@string/password_hint"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <com.dicoding.storyapp.custom_view.CustomButton
         android:id="@+id/loginButton"
         android:layout_width="0dp"
-        android:layout_height="64dp"
+        android:layout_height="55dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="40dp"
         android:text="@string/login"
         android:alpha="0"
+        android:enabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout" />
