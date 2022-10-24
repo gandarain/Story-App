@@ -1,5 +1,7 @@
 package com.dicoding.storyapp.ui.profile
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -46,6 +48,7 @@ class ProfileFragment : Fragment() {
         mLoginPreference = LoginPreference(root.context)
         loginModel = mLoginPreference.getUser()
 
+        playAnimation()
         setupUi()
         languageHandler()
         logoutHandler()
@@ -102,6 +105,19 @@ class ProfileFragment : Fragment() {
         )
         binding.switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
             settingViewModel.saveThemeSetting(isChecked)
+        }
+    }
+
+    private fun playAnimation() {
+        val userDetailCardView = ObjectAnimator.ofFloat(binding.userDetailCardView, View.ALPHA, 1f).setDuration(500)
+        val settingTextView = ObjectAnimator.ofFloat(binding.settingTextView, View.ALPHA, 1f).setDuration(500)
+        val themeCardView = ObjectAnimator.ofFloat(binding.themeCardView, View.ALPHA, 1f).setDuration(500)
+        val languageCardView = ObjectAnimator.ofFloat(binding.languageCardView, View.ALPHA, 1f).setDuration(500)
+        val logoutCardView = ObjectAnimator.ofFloat(binding.logoutCardView, View.ALPHA, 1f).setDuration(500)
+
+        AnimatorSet().apply {
+            playSequentially(userDetailCardView, settingTextView, themeCardView, languageCardView, logoutCardView)
+            start()
         }
     }
 
