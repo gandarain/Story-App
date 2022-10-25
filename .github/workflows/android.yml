@@ -38,6 +38,18 @@ jobs:
           name: apk
           path: app/build/outputs/apk/debug/app-debug.apk
 
+      - name: Download APK from build
+        uses: actions/download-artifact@v1
+        with:
+          name: apk
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.run_number }}
+          release_name: ${{ github.event.repository.name }} v${{ github.run_number }}
+
       - name: Upload Release APK
         id: upload_release_asset
         uses: actions/upload-release-asset@v1.0.1
