@@ -42,7 +42,7 @@
         android:alpha="0"
         app:errorTextColor="@color/primaryColor">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.dicoding.storyapp.custom_view.CustomEditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
