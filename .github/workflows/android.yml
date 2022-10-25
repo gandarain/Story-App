@@ -32,11 +32,15 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+
       - name: Upload Release APK
-       id: upload_release_asset
-       uses: actions/upload-release-asset@v1.0.1
-       env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        id: upload_release_asset
+        uses: actions/upload-release-asset@v1.0.1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: apk/app-debug.apk
