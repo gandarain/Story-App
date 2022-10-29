@@ -99,7 +99,7 @@
         android:alpha="0"
         app:startIconDrawable="@drawable/ic_lock">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.dicoding.storyapp.custom_view.CustomPassword
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
