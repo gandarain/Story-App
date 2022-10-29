@@ -15,5 +15,5 @@
 - Dark Mode
 
 ### APK
-For the APK, please visit the release page.
+For the APK, please visit the release page. <br/>
 https://github.com/gandarain/Story-App/release
