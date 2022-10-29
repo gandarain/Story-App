@@ -8,7 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.dicoding.storyapp.R
 
-class CustomAlertDialog(context: Context, private val message: Int, private val image: Int): AlertDialog(context) {
+class CustomAlertDialog(
+    context: Context,
+    private val message: Int,
+    private val image: Int,
+    private val action: (() -> Unit)? = null
+): AlertDialog(context) {
     init {
         setCancelable(false)
     }
@@ -26,6 +31,7 @@ class CustomAlertDialog(context: Context, private val message: Int, private val 
         val dismissButton = findViewById<Button>(R.id.dismissButton)
         dismissButton.setOnClickListener {
             dismiss()
+            action?.invoke()
         }
     }
 }

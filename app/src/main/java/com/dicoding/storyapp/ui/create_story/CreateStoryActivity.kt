@@ -145,7 +145,11 @@ class CreateStoryActivity : AppCompatActivity() {
             if (!isEmpty(description) && getFile != null) {
                 createStoryViewModel.postCreateStory(getFile!!, description)
             } else {
-                CustomAlertDialog(this, R.string.error_validation, R.drawable.error_form).show()
+                CustomAlertDialog(
+                    this,
+                    R.string.error_validation,
+                    R.drawable.error_form
+                ).show()
             }
         }
     }
@@ -164,7 +168,14 @@ class CreateStoryActivity : AppCompatActivity() {
         if (isError) {
             CustomAlertDialog(this, R.string.error_message, R.drawable.error).show()
         } else {
-            CustomAlertDialog(this, R.string.success_create_story, R.drawable.story_created).show()
+            CustomAlertDialog(
+                this,
+                R.string.success_create_story,
+                R.drawable.story_created,
+                fun() {
+                    finish()
+                }
+            ).show()
             binding.createStoryLayout.imagePickerView.setImageResource(R.drawable.image_picker)
             binding.createStoryLayout.descriptionEditText.text?.clear()
         }
