@@ -34,8 +34,8 @@ data class Story(
     val createdAt: String,
 
     @field:SerializedName("lat")
-    val lat: Float,
+    val lat: Double,
 
     @field:SerializedName("lon")
-    val lon: Float,
+    val lon: Double,
 ): Parcelable
