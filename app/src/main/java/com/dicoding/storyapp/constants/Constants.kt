@@ -12,4 +12,6 @@ object Constants {
     const val SUFFIX_IMAGE_FILE = ".jpg"
     const val SIZE_BYTE_ARRAY = 1024
     const val STREAM_LENGTH = 1000000
+    const val DICODING_LATITUDE = -6.8957643
+    const val DICODING_LONGITUDE = 107.6338462
 }

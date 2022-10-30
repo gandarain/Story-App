@@ -12,8 +12,15 @@
         tools:layout="@layout/fragment_stories" />
 
     <fragment
+        android:id="@+id/navigation_maps"
+        android:name="com.dicoding.storyapp.ui.maps.MapsFragment"
+        android:label="@string/title_maps"
+        tools:layout="@layout/fragment_maps"/>
+
+    <fragment
         android:id="@+id/navigation_profile"
         android:name="com.dicoding.storyapp.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+
 </navigation>

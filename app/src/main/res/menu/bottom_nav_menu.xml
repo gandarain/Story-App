@@ -7,6 +7,11 @@
         android:title="@string/title_stories" />
 
     <item
+        android:id="@+id/navigation_maps"
+        android:icon="@drawable/ic_maps"
+        android:title="@string/title_maps"/>
+
+    <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_person"
         android:title="@string/title_profile" />

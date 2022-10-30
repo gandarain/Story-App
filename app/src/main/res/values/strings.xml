@@ -42,4 +42,5 @@
     <string name="invalid_email">Invalid email</string>
     <string name="invalid_name">Invalid Name</string>
     <string name="invalid_password">Invalid Password</string>
+    <string name="title_maps">Map</string>
 </resources>
