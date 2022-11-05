@@ -1,20 +1,19 @@
 package com.dicoding.storyapp.data
 
 import androidx.lifecycle.LiveData
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.liveData
+import androidx.paging.*
 import com.dicoding.storyapp.api.ApiService
 import com.dicoding.storyapp.model.Story
 import com.dicoding.storyapp.preference.LoginPreference
 
 class StoryRepository(private val pref: LoginPreference, private val apiService: ApiService) {
     fun getListStories(): LiveData<PagingData<Story>> {
+        @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = PagingConfig(
                 pageSize = 5
             ),
+            remoteMediator = StoryRemoteMediator(pref, apiService),
             pagingSourceFactory = {
                 StoryPagingSource(pref, apiService)
             }
