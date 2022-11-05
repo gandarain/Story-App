@@ -1,7 +1,6 @@
 package com.dicoding.storyapp.ui.maps
 
 import android.content.res.Resources
-import android.location.Geocoder
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
@@ -14,7 +13,6 @@ import com.dicoding.storyapp.constants.Constants
 import com.dicoding.storyapp.custom_view.CustomAlertDialog
 import com.dicoding.storyapp.databinding.FragmentMapsBinding
 import com.dicoding.storyapp.model.Story
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -23,8 +21,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
-import java.util.*
-import java.io.IOException
 
 class MapsFragment : Fragment() {
 
@@ -81,34 +77,17 @@ class MapsFragment : Fragment() {
     private fun showMarker(listStory: List<Story>, googleMap: GoogleMap) {
         listStory.forEach { story ->
             val latLng = LatLng(story.lat, story.lon)
-            val addressName = getAddressName(story.lat, story.lon)
-            googleMap.addMarker(MarkerOptions().position(latLng).title(story.description).snippet(addressName))
+            googleMap.addMarker(
+                MarkerOptions()
+                    .position(latLng)
+                    .title(story.createdAt)
+                    .snippet(StringBuilder("created: ")
+                        .append(story.createdAt.subSequence(11, 16).toString())
+                        .toString()
+                    )
+            )
             boundsBuilder.include(latLng)
         }
-
-        val bounds: LatLngBounds = boundsBuilder.build()
-        googleMap.animateCamera(
-            CameraUpdateFactory.newLatLngBounds(
-                bounds,
-                resources.displayMetrics.widthPixels,
-                resources.displayMetrics.heightPixels,
-                300
-            )
-        )
-    }
-
-    private fun getAddressName(lat: Double, lon: Double): String? {
-        var addressName: String? = null
-        val geocoder = Geocoder(context, Locale.getDefault())
-        try {
-            val list = geocoder.getFromLocation(lat, lon, 1)
-            if (list != null && list.size != 0) {
-                addressName = list[0].getAddressLine(0)
-            }
-        } catch (e: IOException) {
-            CustomAlertDialog(binding.root.context, R.string.error_message, R.drawable.error).show()
-        }
-        return addressName
     }
 
     private fun errorHandler(isError: Boolean) {
