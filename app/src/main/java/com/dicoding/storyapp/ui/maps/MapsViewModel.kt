@@ -34,7 +34,7 @@ class MapViewModel(application: Application) : AndroidViewModel(application) {
         _isLoading.value = true
 
         val client = token?.let {
-            ApiConfig.getApiService().getStories(token = "Bearer $it", page = 1, size = 100, location = 1)
+            ApiConfig.getApiService().getStory(token = "Bearer $it", page = 1, size = 100, location = 1)
         }
 
         client?.enqueue(object : Callback<StoryResponse> {

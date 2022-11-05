@@ -3,8 +3,7 @@ package com.dicoding.storyapp.preference
 import android.content.Context
 import com.dicoding.storyapp.model.LoginModel
 
-internal class LoginPreference(context: Context) {
-
+class LoginPreference(context: Context) {
     private val preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     fun setLogin(value: LoginModel) {

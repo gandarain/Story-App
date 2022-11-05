@@ -1,30 +1,22 @@
 package com.dicoding.storyapp.adapter
 
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityOptionsCompat
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.dicoding.storyapp.constants.Constants
 import com.dicoding.storyapp.databinding.StoryLayoutBinding
 import com.dicoding.storyapp.model.Story
+import com.dicoding.storyapp.ui.detail_story.DetailStoryActivity
 import com.dicoding.storyapp.utils.withDateFormat
 
-class ListStoriesAdapter(private val listStories: List<Story>): RecyclerView.Adapter<ListStoriesAdapter.ListViewHolder>() {
-    private lateinit var onItemClickCallback: OnItemClickCallback
-
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
-        this.onItemClickCallback = onItemClickCallback
-    }
-
-    class ListViewHolder(binding: StoryLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
-        var storyImageView: ImageView = binding.storyImageView
-        var nameTextView: TextView = binding.nameTextView
-        var dateTextView: TextView = binding.dateTextView
-        var descriptionTextView: TextView = binding.descriptionTextView
-        var storyCardView: CardView = binding.storyCardView
-    }
+class ListStoriesAdapter :
+    PagingDataAdapter<Story, ListStoriesAdapter.ListViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -40,26 +32,44 @@ class ListStoriesAdapter(private val listStories: List<Story>): RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val story: Story = listStories[position]
-        Glide.with(holder.itemView.context)
-            .load(story.photoUrl)
-            .fitCenter()
-            .into(holder.storyImageView)
-        story.apply {
-            holder.apply {
-                nameTextView.text = name
-                descriptionTextView.text = description
-                dateTextView.text = createdAt.withDateFormat()
-            }
-        }
-        holder.storyCardView.setOnClickListener {
-            onItemClickCallback.onItemClicked(listStories[holder.adapterPosition])
+        val data = getItem(position)
+        if (data != null) {
+            holder.bind(story = data)
         }
     }
 
-    override fun getItemCount(): Int = listStories.size
+    class ListViewHolder(private val binding: StoryLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(story: Story) {
+            with(binding) {
+                nameTextView.text = story.name
+                dateTextView.text = story.createdAt.withDateFormat()
+                descriptionTextView.text = story.description
+                Glide.with(itemView.context)
+                    .load(story.photoUrl)
+                    .fitCenter()
+                    .into(storyImageView)
 
-    interface OnItemClickCallback {
-        fun onItemClicked(data: Story)
+                storyCardView.setOnClickListener {
+                    val intent = Intent(itemView.context, DetailStoryActivity::class.java)
+                    intent.putExtra(Constants.DETAIL_STORY, story)
+                    itemView.context.startActivity(
+                        intent,
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(binding.root.context as Activity).toBundle()
+                    )
+                }
+            }
+        }
+    }
+
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Story>() {
+            override fun areItemsTheSame(oldItem: Story, newItem: Story): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: Story, newItem: Story): Boolean {
+                return oldItem.id == newItem.id
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
+import retrofit2.Response
 
 interface ApiService {
     @FormUrlEncoded
@@ -27,7 +28,16 @@ interface ApiService {
 
     @GET("stories")
     @Headers("Content-Type:application/json; charset=UTF-8")
-    fun getStories(
+    suspend fun getStories(
+        @Header("Authorization") token: String,
+        @Query("page") page: Int,
+        @Query("size") size: Int,
+        @Query("location") location: Int
+    ): Response<StoryResponse>
+
+    @GET("stories")
+    @Headers("Content-Type:application/json; charset=UTF-8")
+    fun getStory(
         @Header("Authorization") token: String,
         @Query("page") page: Int,
         @Query("size") size: Int,
