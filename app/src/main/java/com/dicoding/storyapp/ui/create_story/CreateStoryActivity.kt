@@ -20,6 +20,7 @@ import androidx.core.content.FileProvider
 import com.dicoding.storyapp.R
 import com.dicoding.storyapp.custom_view.CustomAlertDialog
 import com.dicoding.storyapp.databinding.ActivityCreateStoryBinding
+import com.dicoding.storyapp.ui.main.MainActivity
 import com.dicoding.storyapp.utils.createCustomTempFile
 import com.dicoding.storyapp.utils.uriToFile
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -214,6 +215,9 @@ class CreateStoryActivity : AppCompatActivity() {
                 R.string.success_create_story,
                 R.drawable.story_created,
                 fun() {
+                    val moveActivity = Intent(this@CreateStoryActivity, MainActivity::class.java)
+                    moveActivity.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(moveActivity)
                     finish()
                 }
             ).show()
