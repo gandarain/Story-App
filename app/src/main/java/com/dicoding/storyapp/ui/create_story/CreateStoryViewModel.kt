@@ -27,7 +27,7 @@ class CreateStoryViewModel(application: Application): AndroidViewModel(applicati
     private val _isError = MutableLiveData<Boolean>()
     val isError: LiveData<Boolean> = _isError
 
-    fun postCreateStory(imageFile: File, desc: String) {
+    fun postCreateStory(imageFile: File, desc: String, lat: Double, lon: Double) {
         _isLoading.value = true
 
         val file = reduceFileImage(imageFile as File)
@@ -47,8 +47,8 @@ class CreateStoryViewModel(application: Application): AndroidViewModel(applicati
                 token = "Bearer $it",
                 file =  imageMultipart,
                 description = description,
-                lat = 0F,
-                lon = 0F
+                lat = lat,
+                lon = lon
             )
         }
 

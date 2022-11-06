@@ -1,9 +1,16 @@
 package com.dicoding.storyapp.constants
 
+import android.Manifest
+
 object Constants {
     const val SPLASH_SCREEN_TIMER: Long = 3000
     const val REQUEST_CODE_PERMISSIONS = 10
-    val REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CAMERA)
+    val REQUIRED_PERMISSIONS = arrayOf(
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.CAMERA,
+    )
     const val UTC_FORMAT = "yyyy-MM-dd'T'HH:mm:ss"
     const val CREATED_DATE_FORMAT = "dd-MMM-yyyy"
     const val UTC_TIME_ZONE = "UTC"
