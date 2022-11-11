@@ -26,6 +26,8 @@ class LoginViewModelTest{
     private lateinit var storyRepository: StoryRepository
     private lateinit var loginViewModel: LoginViewModel
     private var dummyLoginResponse = DataDummy.generateDummyLoginSuccess()
+    private val dummyEmail = "email"
+    private val dummyPassword = "password"
 
     @Before
     fun setUp() {
@@ -35,18 +37,16 @@ class LoginViewModelTest{
     @Test
     fun `when Post Login Should Not Null and Return Success`() {
         val observer = Observer<Result<LoginResponse>> {}
-        val dummyEmail = "email"
-        val dummyPassword = "password"
 
         try {
             val expectedLogin = MutableLiveData<Result<LoginResponse>>()
             expectedLogin.value = Result.Success(dummyLoginResponse)
             `when`(storyRepository.login(dummyEmail, dummyPassword)).thenReturn(expectedLogin)
 
-            val actualNews = loginViewModel.postLogin(dummyEmail, dummyPassword).observeForever(observer)
+            val actualResponse = loginViewModel.postLogin(dummyEmail, dummyPassword).observeForever(observer)
 
             Mockito.verify(storyRepository).login(dummyEmail, dummyPassword)
-            Assert.assertNotNull(actualNews)
+            Assert.assertNotNull(actualResponse)
         } finally {
             loginViewModel.postLogin(dummyEmail, dummyPassword).removeObserver(observer)
         }
@@ -56,18 +56,16 @@ class LoginViewModelTest{
     fun `when Post Login Should Null and Return Error`() {
         dummyLoginResponse = DataDummy.generateDummyLoginError()
         val observer = Observer<Result<LoginResponse>> {}
-        val dummyEmail = "email"
-        val dummyPassword = "password"
 
         try {
             val expectedLogin = MutableLiveData<Result<LoginResponse>>()
             expectedLogin.value = Result.Error("invalid password")
             `when`(storyRepository.login(dummyEmail, dummyPassword)).thenReturn(expectedLogin)
 
-            val actualNews = loginViewModel.postLogin(dummyEmail, dummyPassword).observeForever(observer)
+            val actualResponse = loginViewModel.postLogin(dummyEmail, dummyPassword).observeForever(observer)
 
             Mockito.verify(storyRepository).login(dummyEmail, dummyPassword)
-            Assert.assertNotNull(actualNews)
+            Assert.assertNotNull(actualResponse)
         } finally {
             loginViewModel.postLogin(dummyEmail, dummyPassword).removeObserver(observer)
         }

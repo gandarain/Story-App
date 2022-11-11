@@ -44,10 +44,10 @@ class RegisterViewModelTest{
             expectedRegister.value = Result.Success(dummyRegisterResponse)
             `when`(storyRepository.register(dummyName, dummyEmail, dummyPassword)).thenReturn(expectedRegister)
 
-            val actualNews = registerViewModel.postRegister(dummyName, dummyEmail, dummyPassword).observeForever(observer)
+            val actualResponse = registerViewModel.postRegister(dummyName, dummyEmail, dummyPassword).observeForever(observer)
 
             Mockito.verify(storyRepository).register(dummyName, dummyEmail, dummyPassword)
-            Assert.assertNotNull(actualNews)
+            Assert.assertNotNull(actualResponse)
         } finally {
             registerViewModel.postRegister(dummyName, dummyEmail, dummyPassword).removeObserver(observer)
         }
@@ -62,10 +62,10 @@ class RegisterViewModelTest{
             expectedRegister.value = Result.Success(dummyRegisterResponse)
             `when`(storyRepository.register(dummyName, dummyEmail, dummyPassword)).thenReturn(expectedRegister)
 
-            val actualNews = registerViewModel.postRegister(dummyName, dummyEmail, dummyPassword).observeForever(observer)
+            val actualResponse = registerViewModel.postRegister(dummyName, dummyEmail, dummyPassword).observeForever(observer)
 
             Mockito.verify(storyRepository).register(dummyName, dummyEmail, dummyPassword)
-            Assert.assertNotNull(actualNews)
+            Assert.assertNotNull(actualResponse)
         } finally {
             registerViewModel.postRegister(dummyName, dummyEmail, dummyPassword).removeObserver(observer)
         }

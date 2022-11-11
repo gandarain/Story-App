@@ -24,9 +24,16 @@ import com.dicoding.storyapp.databinding.ActivityCreateStoryBinding
 import com.dicoding.storyapp.ui.main.MainActivity
 import com.dicoding.storyapp.utils.ViewModelFactory
 import com.dicoding.storyapp.utils.createCustomTempFile
+import com.dicoding.storyapp.utils.reduceFileImage
 import com.dicoding.storyapp.utils.uriToFile
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
 class CreateStoryActivity : AppCompatActivity() {
@@ -191,10 +198,27 @@ class CreateStoryActivity : AppCompatActivity() {
         }
     }
 
+    private fun convertImage(): MultipartBody.Part {
+        val file = reduceFileImage(getFile as File)
+        val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+
+        return MultipartBody.Part.createFormData(
+            "photo",
+            file.name,
+            requestImageFile
+        )
+    }
+
+    private fun convertDescription(description: String): RequestBody {
+        return description.toRequestBody("text/plain".toMediaType())
+    }
+
     private fun createStory(description: String) {
+        val image = convertImage()
+        val desc = convertDescription(description)
         createStoryViewModel.postCreateStory(
-            getFile!!,
-            description,
+            image,
+            desc,
             latitude!!,
             longitude!!
         ).observe(this@CreateStoryActivity) { result ->
