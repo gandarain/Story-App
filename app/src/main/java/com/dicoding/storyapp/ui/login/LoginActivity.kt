@@ -10,26 +10,32 @@ import android.text.TextUtils.isEmpty
 import android.text.TextWatcher
 import android.view.View
 import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import com.dicoding.storyapp.ui.main.MainActivity
 import com.dicoding.storyapp.R
 import com.dicoding.storyapp.custom_view.CustomAlertDialog
+import com.dicoding.storyapp.data.Result
 import com.dicoding.storyapp.ui.register.RegisterActivity
 import com.dicoding.storyapp.databinding.ActivityLoginBinding
 import com.dicoding.storyapp.model.LoginModel
 import com.dicoding.storyapp.model.LoginResponse
 import com.dicoding.storyapp.preference.LoginPreference
+import com.dicoding.storyapp.ui.stories.StoriesViewModel
+import com.dicoding.storyapp.utils.ViewModelFactory
 import com.dicoding.storyapp.utils.isValidEmail
 import com.dicoding.storyapp.utils.validateMinLength
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    private val loginViewModel by viewModels<LoginViewModel>()
+    private lateinit var factory: ViewModelFactory
+    private val loginViewModel: LoginViewModel by viewModels { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupViewModel()
         playAnimation()
         hideActionBar()
         registerButtonHandler()
@@ -37,18 +43,10 @@ class LoginActivity : AppCompatActivity() {
         setMyButtonEnable()
         emailEditTextHandler()
         passwordEditTextHandler()
+    }
 
-        loginViewModel.isLoading.observe(this@LoginActivity) {
-            showLoading(it)
-        }
-
-        loginViewModel.loginResponse.observe(this@LoginActivity) {
-            loginHandler(it)
-        }
-
-        loginViewModel.isError.observe(this@LoginActivity) {
-            errorHandler(it)
-        }
+    private fun setupViewModel() {
+        factory = ViewModelFactory.getInstance(binding.root.context)
     }
 
     private fun hideActionBar() {
@@ -68,14 +66,33 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.loginLayout.passwordEditText.text.toString()
 
             if (!isEmpty(email) && !isEmpty(password)) {
-                loginViewModel.postLogin(email, password)
+                handlingLogin(email, password)
             } else {
                 CustomAlertDialog(this, R.string.error_validation, R.drawable.error_form).show()
             }
         }
     }
 
-    private fun showLoading(isLoading: Boolean) {
+    private fun handlingLogin(email: String, password: String) {
+        loginViewModel.postLogin(email, password).observe(this@LoginActivity) { result ->
+            if (result != null) {
+                when(result) {
+                    is Result.Loading -> {
+                        loadingHandler(true)
+                    }
+                    is Result.Error -> {
+                        loadingHandler(false)
+                        errorHandler()
+                    }
+                    is Result.Success -> {
+                        successLoginHandler(result.data)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun loadingHandler(isLoading: Boolean) {
         if (isLoading) {
             binding.loadingLayout.root.visibility = View.VISIBLE
             binding.loginLayout.root.visibility = View.GONE
@@ -85,17 +102,13 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun loginHandler(loginResponse: LoginResponse) {
-        if (!loginResponse.error) {
-            saveLoginData(loginResponse)
-            navigateToHome()
-        }
+    private fun successLoginHandler(loginResponse: LoginResponse) {
+        saveLoginData(loginResponse)
+        navigateToHome()
     }
 
-    private fun errorHandler(isError: Boolean) {
-        if (isError) {
-            CustomAlertDialog(this, R.string.error_message, R.drawable.error).show()
-        }
+    private fun errorHandler() {
+        CustomAlertDialog(this, R.string.error_message, R.drawable.error).show()
     }
 
     private fun saveLoginData(loginResponse: LoginResponse) {

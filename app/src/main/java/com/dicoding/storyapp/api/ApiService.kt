@@ -13,10 +13,10 @@ import retrofit2.Response
 interface ApiService {
     @FormUrlEncoded
     @POST("login")
-    fun login(
+    suspend fun login(
         @Field("email") email: String,
         @Field("password") password: String
-    ): Call<LoginResponse>
+    ): LoginResponse
 
     @FormUrlEncoded
     @POST("register")
