@@ -2,17 +2,18 @@ package com.dicoding.storyapp.ui.maps
 
 import android.content.res.Resources
 import androidx.fragment.app.Fragment
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.dicoding.storyapp.R
 import com.dicoding.storyapp.constants.Constants
 import com.dicoding.storyapp.custom_view.CustomAlertDialog
+import com.dicoding.storyapp.data.Result
 import com.dicoding.storyapp.databinding.FragmentMapsBinding
 import com.dicoding.storyapp.model.Story
+import com.dicoding.storyapp.utils.ViewModelFactory
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -26,7 +27,8 @@ class MapsFragment : Fragment() {
 
     private var _binding: FragmentMapsBinding? = null
     private val binding get() = _binding!!
-    private val mapsViewModel: MapViewModel by activityViewModels()
+    private lateinit var factory: ViewModelFactory
+    private val mapsViewModel: MapViewModel by viewModels { factory }
     private val boundsBuilder = LatLngBounds.Builder()
 
     private val callback = OnMapReadyCallback { googleMap ->
@@ -34,6 +36,8 @@ class MapsFragment : Fragment() {
         googleMap.uiSettings.isIndoorLevelPickerEnabled = true
         googleMap.uiSettings.isCompassEnabled = true
         googleMap.uiSettings.isMapToolbarEnabled = true
+
+        setupViewModel()
 
         val dummyLocation = LatLng(Constants.DICODING_LATITUDE, Constants.DICODING_LONGITUDE)
         googleMap.addMarker(
@@ -44,9 +48,7 @@ class MapsFragment : Fragment() {
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dummyLocation, 15f))
 
         setMapStyle(googleMap)
-        mapsViewModel.listStories.observe(viewLifecycleOwner) {
-            showMarker(it, googleMap)
-        }
+        getStoryWithLocation(googleMap)
     }
 
     override fun onCreateView(
@@ -57,21 +59,37 @@ class MapsFragment : Fragment() {
         _binding = FragmentMapsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        mapsViewModel.isError.observe(viewLifecycleOwner) {
-            errorHandler(it)
-        }
-
-        mapsViewModel.isLoading.observe(viewLifecycleOwner) {
-            shodLoading(it)
-        }
-
         return root
+    }
+
+    private fun setupViewModel() {
+        factory = ViewModelFactory.getInstance(binding.root.context)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+    }
+
+    private fun getStoryWithLocation(googleMap: GoogleMap) {
+        mapsViewModel.getStories().observe(this) { result ->
+            if (result != null) {
+                when(result) {
+                    is Result.Loading -> {
+                        loadingHandler(true)
+                    }
+                    is Result.Error -> {
+                        loadingHandler(false)
+                        errorHandler()
+                    }
+                    is Result.Success -> {
+                        loadingHandler(false)
+                        showMarker(result.data.listStory, googleMap)
+                    }
+                }
+            }
+        }
     }
 
     private fun showMarker(listStory: List<Story>, googleMap: GoogleMap) {
@@ -90,10 +108,8 @@ class MapsFragment : Fragment() {
         }
     }
 
-    private fun errorHandler(isError: Boolean) {
-        if (isError) {
-            CustomAlertDialog(binding.root.context, R.string.error_message, R.drawable.error).show()
-        }
+    private fun errorHandler() {
+        CustomAlertDialog(binding.root.context, R.string.error_message, R.drawable.error).show()
     }
 
     private fun setMapStyle(googleMap: GoogleMap) {
@@ -108,7 +124,7 @@ class MapsFragment : Fragment() {
         }
     }
 
-    private fun shodLoading(isLoading: Boolean) {
+    private fun loadingHandler(isLoading: Boolean) {
         if (isLoading) {
             binding.progressBarMap.visibility = View.VISIBLE
             binding.root.visibility = View.INVISIBLE

@@ -37,12 +37,12 @@ interface ApiService {
 
     @GET("stories")
     @Headers("Content-Type:application/json; charset=UTF-8")
-    fun getStory(
+    suspend fun getStory(
         @Header("Authorization") token: String,
         @Query("page") page: Int,
         @Query("size") size: Int,
         @Query("location") location: Int
-    ): Call<StoryResponse>
+    ): StoryResponse
 
     @Multipart
     @POST("stories")

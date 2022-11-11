@@ -10,7 +10,6 @@ import android.text.TextUtils.isEmpty
 import android.text.TextWatcher
 import android.view.View
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
 import com.dicoding.storyapp.ui.main.MainActivity
 import com.dicoding.storyapp.R
 import com.dicoding.storyapp.custom_view.CustomAlertDialog
@@ -20,7 +19,6 @@ import com.dicoding.storyapp.databinding.ActivityLoginBinding
 import com.dicoding.storyapp.model.LoginModel
 import com.dicoding.storyapp.model.LoginResponse
 import com.dicoding.storyapp.preference.LoginPreference
-import com.dicoding.storyapp.ui.stories.StoriesViewModel
 import com.dicoding.storyapp.utils.ViewModelFactory
 import com.dicoding.storyapp.utils.isValidEmail
 import com.dicoding.storyapp.utils.validateMinLength

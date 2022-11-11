@@ -4,14 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.paging.*
 import com.dicoding.storyapp.api.ApiService
-import com.dicoding.storyapp.model.CreateStoryResponse
-import com.dicoding.storyapp.model.LoginResponse
-import com.dicoding.storyapp.model.RegisterResponse
-import com.dicoding.storyapp.model.Story
+import com.dicoding.storyapp.model.*
 import com.dicoding.storyapp.preference.LoginPreference
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import java.io.File
 
 class StoryRepository(private val pref: LoginPreference, private val apiService: ApiService) {
     fun getListStories(): LiveData<PagingData<Story>> {
@@ -83,6 +79,25 @@ class StoryRepository(private val pref: LoginPreference, private val apiService:
                 description = desc,
                 lat = lat,
                 lon = lon
+            )
+            if (response.error) {
+                emit(Result.Error(response.message))
+            } else {
+                emit(Result.Success(response))
+            }
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
+    fun getStories(): LiveData<Result<StoryResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.getStory(
+                token = "Bearer ${pref.getUser().token}",
+                page = 1,
+                size = 100,
+                location = 1
             )
             if (response.error) {
                 emit(Result.Error(response.message))
