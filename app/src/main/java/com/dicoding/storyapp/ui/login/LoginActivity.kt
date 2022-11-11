@@ -115,7 +115,7 @@ class LoginActivity : AppCompatActivity() {
         val loginPreference = LoginPreference(this)
         val loginResult = loginResponse.loginResult
         val loginModel = LoginModel(
-            name = loginResult.name, userId = loginResult.userId, token = loginResult.token
+            name = loginResult?.name, userId = loginResult?.userId, token = loginResult?.token
         )
 
         loginPreference.setLogin(loginModel)
