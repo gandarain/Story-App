@@ -20,11 +20,11 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("register")
-    fun register(
+    suspend fun register(
         @Field("name") name: String,
         @Field("email") email: String,
         @Field("password") password: String
-    ): Call<RegisterResponse>
+    ): RegisterResponse
 
     @GET("stories")
     @Headers("Content-Type:application/json; charset=UTF-8")

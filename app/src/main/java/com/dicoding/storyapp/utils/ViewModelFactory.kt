@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.storyapp.di.Injection
 import com.dicoding.storyapp.ui.login.LoginViewModel
+import com.dicoding.storyapp.ui.register.RegisterViewModel
 
 class ViewModelFactory private constructor(private val repo: StoryRepository) : ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
@@ -16,6 +17,9 @@ class ViewModelFactory private constructor(private val repo: StoryRepository) : 
         }
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return LoginViewModel(repo) as T
+        }
+        if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
+            return RegisterViewModel(repo) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

@@ -12,19 +12,23 @@ import android.view.View
 import androidx.activity.viewModels
 import com.dicoding.storyapp.R
 import com.dicoding.storyapp.custom_view.CustomAlertDialog
+import com.dicoding.storyapp.data.Result
 import com.dicoding.storyapp.databinding.ActivityRegisterBinding
+import com.dicoding.storyapp.utils.ViewModelFactory
 import com.dicoding.storyapp.utils.isValidEmail
 import com.dicoding.storyapp.utils.validateMinLength
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private val registerViewModel by viewModels<RegisterViewModel>()
+    private lateinit var factory: ViewModelFactory
+    private val registerViewModel: RegisterViewModel by viewModels { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupViewModel()
         playAnimation()
         setupToolbar()
         backButtonHandler()
@@ -34,18 +38,10 @@ class RegisterActivity : AppCompatActivity() {
         nameEditTextHandler()
         passwordEditTextHandler()
         confirmationPasswordEditTextHandler()
+    }
 
-        registerViewModel.isLoading.observe(this@RegisterActivity) {
-            showLoading(it)
-        }
-
-        registerViewModel.isSuccess.observe(this@RegisterActivity) {
-            registerHandler(it)
-        }
-
-        registerViewModel.isError.observe(this@RegisterActivity) {
-            errorHandler(it)
-        }
+    private fun setupViewModel() {
+        factory = ViewModelFactory.getInstance(binding.root.context)
     }
 
     private fun setupToolbar() {
@@ -64,7 +60,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun showLoading(isLoading: Boolean) {
+    private fun loadingHandler(isLoading: Boolean) {
         if (isLoading) {
             binding.loadingLayout.root.visibility = View.VISIBLE
             binding.registerLayout.root.visibility = View.GONE
@@ -74,20 +70,16 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun errorHandler(isError: Boolean) {
-        if (isError) {
-            CustomAlertDialog(this, R.string.error_message, R.drawable.error).show()
-        }
+    private fun errorHandler() {
+        CustomAlertDialog(this, R.string.error_message, R.drawable.error).show()
     }
 
-    private fun registerHandler(isSuccess: Boolean) {
-        if (isSuccess) {
-            CustomAlertDialog(this, R.string.success_create_user, R.drawable.user_created).show()
-            binding.registerLayout.emailEditText.text?.clear()
-            binding.registerLayout.passwordEditText.text?.clear()
-            binding.registerLayout.nameEditText.text?.clear()
-            binding.registerLayout.confirmPasswordEditText.text?.clear()
-        }
+    private fun registerHandler() {
+        CustomAlertDialog(this, R.string.success_create_user, R.drawable.user_created).show()
+        binding.registerLayout.emailEditText.text?.clear()
+        binding.registerLayout.passwordEditText.text?.clear()
+        binding.registerLayout.nameEditText.text?.clear()
+        binding.registerLayout.confirmPasswordEditText.text?.clear()
     }
 
     private fun registerButtonHandler() {
@@ -97,9 +89,29 @@ class RegisterActivity : AppCompatActivity() {
             val name = binding.registerLayout.nameEditText.text.toString()
 
             if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(name)) {
-                registerViewModel.postRegister(name, email, password)
+                handlingRegister(name, email, password)
             } else {
                 CustomAlertDialog(this, R.string.error_validation, R.drawable.error_form).show()
+            }
+        }
+    }
+
+    private fun handlingRegister(name: String, email: String, password: String) {
+        registerViewModel.postRegister(name, email, password).observe(this@RegisterActivity) { result ->
+            if (result != null) {
+                when(result) {
+                    is Result.Loading -> {
+                        loadingHandler(true)
+                    }
+                    is Result.Error -> {
+                        loadingHandler(false)
+                        errorHandler()
+                    }
+                    is Result.Success -> {
+                        loadingHandler(false)
+                        registerHandler()
+                    }
+                }
             }
         }
     }
