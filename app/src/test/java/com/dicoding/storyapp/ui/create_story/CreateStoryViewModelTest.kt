@@ -95,7 +95,7 @@ class CreateStoryViewModelTest {
 
         try {
             val expectedCreateStory = MutableLiveData<Result<CreateStoryResponse>>()
-            expectedCreateStory.value = Result.Success(dummyResponse)
+            expectedCreateStory.value = Result.Error("error")
             `when`(storyRepository.createStory(
                 imageFile = imageMultipart,
                 desc = dummyDesc,

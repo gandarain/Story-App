@@ -1,9 +1,6 @@
 package com.dicoding.storyapp.utils
 
-import com.dicoding.storyapp.model.CreateStoryResponse
-import com.dicoding.storyapp.model.LoginResponse
-import com.dicoding.storyapp.model.LoginResultResponse
-import com.dicoding.storyapp.model.RegisterResponse
+import com.dicoding.storyapp.model.*
 
 object DataDummy {
     fun generateDummyLoginSuccess(): LoginResponse {
@@ -49,7 +46,43 @@ object DataDummy {
     fun generateDummyCreateStoryError(): CreateStoryResponse {
         return CreateStoryResponse(
             error = true,
-            message = "success"
+            message = "error"
+        )
+    }
+
+    fun generateDummyStory(): StoryResponse {
+        return StoryResponse(
+            error = false,
+            message = "success",
+            listStory = arrayListOf(
+                Story(
+                    id = "id",
+                    name = "name",
+                    description = "description",
+                    photoUrl = "photoUrl",
+                    createdAt = "createdAt",
+                    lat = 0.01,
+                    lon = 0.01
+                )
+            )
+        )
+    }
+
+    fun generateErrorDummyStory(): StoryResponse {
+        return StoryResponse(
+            error = true,
+            message = "error",
+            listStory = arrayListOf(
+                Story(
+                    id = "id",
+                    name = "name",
+                    description = "description",
+                    photoUrl = "photoUrl",
+                    createdAt = "createdAt",
+                    lat = 0.01,
+                    lon = 0.01
+                )
+            )
         )
     }
 }

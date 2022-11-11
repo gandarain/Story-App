@@ -59,7 +59,7 @@ class RegisterViewModelTest{
         val observer = Observer<Result<RegisterResponse>> {}
         try {
             val expectedRegister = MutableLiveData<Result<RegisterResponse>>()
-            expectedRegister.value = Result.Success(dummyRegisterResponse)
+            expectedRegister.value = Result.Error("bad request")
             `when`(storyRepository.register(dummyName, dummyEmail, dummyPassword)).thenReturn(expectedRegister)
 
             val actualResponse = registerViewModel.postRegister(dummyName, dummyEmail, dummyPassword).observeForever(observer)
