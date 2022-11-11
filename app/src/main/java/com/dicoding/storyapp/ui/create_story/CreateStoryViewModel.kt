@@ -1,35 +1,21 @@
 package com.dicoding.storyapp.ui.create_story
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.dicoding.storyapp.api.ApiConfig
+import androidx.lifecycle.ViewModel
+import com.dicoding.storyapp.data.Result
+import com.dicoding.storyapp.data.StoryRepository
 import com.dicoding.storyapp.model.CreateStoryResponse
-import com.dicoding.storyapp.preference.LoginPreference
 import com.dicoding.storyapp.utils.reduceFileImage
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import retrofit2.Callback
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import retrofit2.Call
-import retrofit2.Response
 import java.io.File
 
-class CreateStoryViewModel(application: Application): AndroidViewModel(application) {
-    private val context = getApplication<Application>().applicationContext
-
-    private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> = _isLoading
-
-    private val _isError = MutableLiveData<Boolean>()
-    val isError: LiveData<Boolean> = _isError
-
-    fun postCreateStory(imageFile: File, desc: String, lat: Double, lon: Double) {
-        _isLoading.value = true
-
+class CreateStoryViewModel(private val storyRepository: StoryRepository): ViewModel() {
+    fun postCreateStory(imageFile: File, desc: String, lat: Double, lon: Double): LiveData<Result<CreateStoryResponse>> {
         val file = reduceFileImage(imageFile as File)
 
         val description = desc.toRequestBody("text/plain".toMediaType())
@@ -40,36 +26,9 @@ class CreateStoryViewModel(application: Application): AndroidViewModel(applicati
             requestImageFile
         )
 
-        val token = LoginPreference(context).getUser().token
+        Log.d("Latitude", lat.toString())
+        Log.d("Longitude", lon.toString())
 
-        val client = token?.let {
-            ApiConfig.getApiService().createStory(
-                token = "Bearer $it",
-                file =  imageMultipart,
-                description = description,
-                lat = lat,
-                lon = lon
-            )
-        }
-
-        client?.enqueue(object : Callback<CreateStoryResponse> {
-            override fun onResponse(
-                call: Call<CreateStoryResponse>,
-                response: Response<CreateStoryResponse>
-            ) {
-                if (response.body()?.error == false) {
-                    _isLoading.value = false
-                    _isError.value = false
-                } else {
-                    _isError.value = true
-                    _isLoading.value = false
-                }
-            }
-
-            override fun onFailure(call: Call<CreateStoryResponse>, t: Throwable) {
-                _isLoading.value = false
-                _isError.value = true
-            }
-        })
+        return storyRepository.createStory(imageMultipart, description, lat, lon)
     }
 }

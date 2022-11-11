@@ -46,11 +46,11 @@ interface ApiService {
 
     @Multipart
     @POST("stories")
-    fun createStory(
+    suspend fun createStory(
         @Header("Authorization") token: String,
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
         @Part("lat") lat: Double,
         @Part("lon") lon: Double,
-    ): Call<CreateStoryResponse>
+    ): CreateStoryResponse
 }
