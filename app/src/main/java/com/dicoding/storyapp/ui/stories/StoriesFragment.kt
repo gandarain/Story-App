@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.storyapp.adapter.ListStoriesAdapter
+import com.dicoding.storyapp.adapter.LoadingStateAdapter
 import com.dicoding.storyapp.databinding.FragmentStoriesBinding
 import com.dicoding.storyapp.ui.create_story.CreateStoryActivity
 import com.dicoding.storyapp.utils.ViewModelFactory
@@ -58,6 +59,12 @@ class StoriesFragment : Fragment() {
     }
 
     private fun getStories() {
+        binding.storiesRv.adapter = listStoriesAdapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                listStoriesAdapter.retry()
+            }
+        )
+
         homeViewModel.getListStory.observe(viewLifecycleOwner) {
             listStoriesAdapter.submitData(lifecycle, it)
         }

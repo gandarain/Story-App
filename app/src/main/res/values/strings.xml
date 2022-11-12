@@ -44,4 +44,5 @@
     <string name="invalid_password">Invalid Password</string>
     <string name="title_maps">Map</string>
     <string name="location_not_found">Location is not found. Try Again</string>
+    <string name="retry">Retry</string>
 </resources>

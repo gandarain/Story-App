@@ -27,6 +27,7 @@
         <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_stories.xml" value="0.13402777777777777" />
+        <entry key="app/src/main/res/layout/item_loading.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/loading_layout.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/login_layout.xml" value="0.13402777777777777" />
         <entry key="app/src/main/res/layout/register_layout.xml" value="0.13402777777777777" />
