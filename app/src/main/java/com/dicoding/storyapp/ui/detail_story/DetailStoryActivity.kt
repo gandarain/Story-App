@@ -2,7 +2,6 @@ package com.dicoding.storyapp.ui.detail_story
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
 import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.dicoding.storyapp.R
@@ -42,9 +41,9 @@ class DetailStoryActivity : AppCompatActivity() {
             .into(binding.storyImageView)
 
         detailStory.apply {
-            binding.nameTextView.setText(name)
-            binding.descriptionTextView.setText(description)
-            binding.dateTextView.setText(createdAt.withDateFormat())
+            binding.nameTextView.text = name
+            binding.descriptionTextView.text = description
+            binding.dateTextView.text = createdAt.withDateFormat()
         }
     }
 }
