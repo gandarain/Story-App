@@ -13,6 +13,9 @@
 - Detail Story
 - Change Language
 - Dark Mode
+- Maps and Geolocation
+- Paging
+- Unit Test
 
 ### APK
 For the APK, please visit the release page. <br/>
