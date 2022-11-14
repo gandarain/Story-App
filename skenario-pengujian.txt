@@ -1,0 +1,55 @@
+CreateStoryViewModel
+
+Ketika berhasil membuat story.
+1. Memastikan mengembalikan Result.Success.
+2. Memastikan data tidak null.
+
+Ketika gagal membuat story.
+1. Memastikan mengembalikan Result.Error.
+
+
+LoginViewModel
+
+Ketika berhasil login.
+1. Memastikan mengembalikan Result.Success.
+2. Memastikan data tidak null.
+
+Ketika gagal login.
+1. Memastikan mengembalikan Result.Error.
+
+
+MapViewModel
+
+Ketika berhasil memuat story.
+1. Memastikan mengembalikan Result.Success.
+2. Memastikan data tidak null.
+
+Ketika gagal memuat story.
+1. Memastikan mengembalikan Result.Error.
+
+
+RegisterViewModel
+
+Ketika berhasil register.
+1. Memastikan mengembalikan Result.Success.
+2. Memastikan data tidak null.
+
+Ketika gagal register.
+1. Memastikan mengembalikan Result.Error.
+
+
+StoriesViewModel
+
+Ketika berhasil memuat story.
+1. Memastikan mengembalikan Result.Success.
+2. Memastikan data tidak null.
+
+Ketika gagal memuat story.
+1. Memastikan mengembalikan Result.Error.
+
+
+SettingViewModel
+
+Ketika berhasil memuat theme setting.
+1. Memastikan mengembalikan Result.Success.
+2. Memastikan data tidak null.
