@@ -51,5 +51,5 @@ Ketika gagal memuat story.
 SettingViewModel
 
 Ketika berhasil memuat theme setting.
-1. Memastikan mengembalikan Result.Success.
+1. Memastikan mengembalikan true.
 2. Memastikan data tidak null.
