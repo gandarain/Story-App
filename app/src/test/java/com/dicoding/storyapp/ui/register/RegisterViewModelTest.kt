@@ -2,11 +2,11 @@ package com.dicoding.storyapp.ui.register
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import com.dicoding.storyapp.data.StoryRepository
 import com.dicoding.storyapp.data.Result
 import com.dicoding.storyapp.model.RegisterResponse
 import com.dicoding.storyapp.utils.DataDummy
+import com.dicoding.storyapp.utils.getOrAwaitValue
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -38,36 +38,29 @@ class RegisterViewModelTest{
 
     @Test
     fun `when Post Register Should Not Null and Return Success`() {
-        val observer = Observer<Result<RegisterResponse>> {}
-        try {
-            val expectedRegister = MutableLiveData<Result<RegisterResponse>>()
-            expectedRegister.value = Result.Success(dummyRegisterResponse)
-            `when`(storyRepository.register(dummyName, dummyEmail, dummyPassword)).thenReturn(expectedRegister)
+        val expectedRegister = MutableLiveData<Result<RegisterResponse>>()
+        expectedRegister.value = Result.Success(dummyRegisterResponse)
+        `when`(storyRepository.register(dummyName, dummyEmail, dummyPassword)).thenReturn(expectedRegister)
 
-            val actualResponse = registerViewModel.postRegister(dummyName, dummyEmail, dummyPassword).observeForever(observer)
+        val actualResponse = registerViewModel.postRegister(dummyName, dummyEmail, dummyPassword).getOrAwaitValue()
 
-            Mockito.verify(storyRepository).register(dummyName, dummyEmail, dummyPassword)
-            Assert.assertNotNull(actualResponse)
-        } finally {
-            registerViewModel.postRegister(dummyName, dummyEmail, dummyPassword).removeObserver(observer)
-        }
+        Mockito.verify(storyRepository).register(dummyName, dummyEmail, dummyPassword)
+        Assert.assertNotNull(actualResponse)
+        Assert.assertTrue(actualResponse is Result.Success)
     }
 
     @Test
     fun `when Post Register Should Null and Return Error`() {
         dummyRegisterResponse = DataDummy.generateDummyRegisterError()
-        val observer = Observer<Result<RegisterResponse>> {}
-        try {
-            val expectedRegister = MutableLiveData<Result<RegisterResponse>>()
-            expectedRegister.value = Result.Error("bad request")
-            `when`(storyRepository.register(dummyName, dummyEmail, dummyPassword)).thenReturn(expectedRegister)
 
-            val actualResponse = registerViewModel.postRegister(dummyName, dummyEmail, dummyPassword).observeForever(observer)
+        val expectedRegister = MutableLiveData<Result<RegisterResponse>>()
+        expectedRegister.value = Result.Error("bad request")
+        `when`(storyRepository.register(dummyName, dummyEmail, dummyPassword)).thenReturn(expectedRegister)
 
-            Mockito.verify(storyRepository).register(dummyName, dummyEmail, dummyPassword)
-            Assert.assertNotNull(actualResponse)
-        } finally {
-            registerViewModel.postRegister(dummyName, dummyEmail, dummyPassword).removeObserver(observer)
-        }
+        val actualResponse = registerViewModel.postRegister(dummyName, dummyEmail, dummyPassword).getOrAwaitValue()
+
+        Mockito.verify(storyRepository).register(dummyName, dummyEmail, dummyPassword)
+        Assert.assertNotNull(actualResponse)
+        Assert.assertTrue(actualResponse is Result.Error)
     }
 }

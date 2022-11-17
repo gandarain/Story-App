@@ -2,11 +2,11 @@ package com.dicoding.storyapp.ui.maps
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import com.dicoding.storyapp.data.StoryRepository
 import com.dicoding.storyapp.data.Result
 import com.dicoding.storyapp.model.StoryResponse
 import com.dicoding.storyapp.utils.DataDummy
+import com.dicoding.storyapp.utils.getOrAwaitValue
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -34,38 +34,29 @@ class MapViewModelTest{
 
     @Test
     fun `when Get Story Should Not Null and Return Success`() {
-        val observer = Observer<Result<StoryResponse>> {}
+        val expectedResponse = MutableLiveData<Result<StoryResponse>>()
+        expectedResponse.value = Result.Success(dummyStory)
+        `when`(storyRepository.getStories()).thenReturn(expectedResponse)
 
-        try {
-            val expectedResponse = MutableLiveData<Result<StoryResponse>>()
-            expectedResponse.value = Result.Success(dummyStory)
-            `when`(storyRepository.getStories()).thenReturn(expectedResponse)
+        val actualResponse = mapViewModel.getStories().getOrAwaitValue()
 
-            val actualResponse = mapViewModel.getStories().observeForever(observer)
-
-            Mockito.verify(storyRepository).getStories()
-            Assert.assertNotNull(actualResponse)
-        } finally {
-            mapViewModel.getStories().removeObserver(observer)
-        }
+        Mockito.verify(storyRepository).getStories()
+        Assert.assertNotNull(actualResponse)
+        Assert.assertTrue(actualResponse is Result.Success)
     }
 
     @Test
     fun `when Get Story Should Null and Return Error`() {
-        val observer = Observer<Result<StoryResponse>> {}
         dummyStory = DataDummy.generateErrorDummyStory()
 
-        try {
-            val expectedResponse = MutableLiveData<Result<StoryResponse>>()
-            expectedResponse.value = Result.Error("error")
-            `when`(storyRepository.getStories()).thenReturn(expectedResponse)
+        val expectedResponse = MutableLiveData<Result<StoryResponse>>()
+        expectedResponse.value = Result.Error("error")
+        `when`(storyRepository.getStories()).thenReturn(expectedResponse)
 
-            val actualResponse = mapViewModel.getStories().observeForever(observer)
+        val actualResponse = mapViewModel.getStories().getOrAwaitValue()
 
-            Mockito.verify(storyRepository).getStories()
-            Assert.assertNotNull(actualResponse)
-        } finally {
-            mapViewModel.getStories().removeObserver(observer)
-        }
+        Mockito.verify(storyRepository).getStories()
+        Assert.assertNotNull(actualResponse)
+        Assert.assertTrue(actualResponse is Result.Error)
     }
 }

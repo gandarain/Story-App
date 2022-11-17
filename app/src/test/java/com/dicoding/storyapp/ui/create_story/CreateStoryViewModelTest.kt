@@ -2,11 +2,11 @@ package com.dicoding.storyapp.ui.create_story;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import com.dicoding.storyapp.data.StoryRepository
 import com.dicoding.storyapp.data.Result
 import com.dicoding.storyapp.model.CreateStoryResponse
 import com.dicoding.storyapp.utils.DataDummy
+import com.dicoding.storyapp.utils.getOrAwaitValue
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -52,78 +52,59 @@ class CreateStoryViewModelTest {
 
     @Test
     fun `when Post Create Story Should Not Null and Return Success`() {
-        val observer = Observer<Result<CreateStoryResponse>> {}
+        val expectedCreateStory = MutableLiveData<Result<CreateStoryResponse>>()
+        expectedCreateStory.value = Result.Success(dummyResponse)
+        `when`(storyRepository.createStory(
+            imageFile = imageMultipart,
+            desc = dummyDesc,
+            lat = dummyLat,
+            lon = dummyLon
+        )).thenReturn(expectedCreateStory)
 
-        try {
-            val expectedCreateStory = MutableLiveData<Result<CreateStoryResponse>>()
-            expectedCreateStory.value = Result.Success(dummyResponse)
-            `when`(storyRepository.createStory(
-                imageFile = imageMultipart,
-                desc = dummyDesc,
-                lat = dummyLat,
-                lon = dummyLon
-            )).thenReturn(expectedCreateStory)
+        val actualResponse = createStoryViewModel.postCreateStory(
+            imageFile = imageMultipart,
+            desc = dummyDesc,
+            lat = dummyLat,
+            lon = dummyLon
+        ).getOrAwaitValue()
 
-            val actualResponse = createStoryViewModel.postCreateStory(
-                imageFile = imageMultipart,
-                desc = dummyDesc,
-                lat = dummyLat,
-                lon = dummyLon
-            ).observeForever(observer)
-
-            Mockito.verify(storyRepository).createStory(
-                imageFile = imageMultipart,
-                desc = dummyDesc,
-                lat = dummyLat,
-                lon = dummyLon
-            )
-            Assert.assertNotNull(actualResponse)
-        } finally {
-            createStoryViewModel.postCreateStory(
-                imageFile = imageMultipart,
-                desc = dummyDesc,
-                lat = dummyLat,
-                lon = dummyLon
-            ).removeObserver(observer)
-        }
+        Mockito.verify(storyRepository).createStory(
+            imageFile = imageMultipart,
+            desc = dummyDesc,
+            lat = dummyLat,
+            lon = dummyLon
+        )
+        Assert.assertNotNull(actualResponse)
+        Assert.assertTrue(actualResponse is Result.Success)
     }
 
     @Test
     fun `when Post Create Story Should Null and Return Error`() {
-        val observer = Observer<Result<CreateStoryResponse>> {}
         dummyResponse = DataDummy.generateDummyCreateStoryError()
 
-        try {
-            val expectedCreateStory = MutableLiveData<Result<CreateStoryResponse>>()
-            expectedCreateStory.value = Result.Error("error")
-            `when`(storyRepository.createStory(
-                imageFile = imageMultipart,
-                desc = dummyDesc,
-                lat = dummyLat,
-                lon = dummyLon
-            )).thenReturn(expectedCreateStory)
+        val expectedCreateStory = MutableLiveData<Result<CreateStoryResponse>>()
+        expectedCreateStory.value = Result.Error("error")
+        `when`(storyRepository.createStory(
+            imageFile = imageMultipart,
+            desc = dummyDesc,
+            lat = dummyLat,
+            lon = dummyLon
+        )).thenReturn(expectedCreateStory)
 
-            val actualResponse = createStoryViewModel.postCreateStory(
-                imageFile = imageMultipart,
-                desc = dummyDesc,
-                lat = dummyLat,
-                lon = dummyLon
-            ).observeForever(observer)
+        val actualResponse = createStoryViewModel.postCreateStory(
+            imageFile = imageMultipart,
+            desc = dummyDesc,
+            lat = dummyLat,
+            lon = dummyLon
+        ).getOrAwaitValue()
 
-            Mockito.verify(storyRepository).createStory(
-                imageFile = imageMultipart,
-                desc = dummyDesc,
-                lat = dummyLat,
-                lon = dummyLon
-            )
-            Assert.assertNotNull(actualResponse)
-        } finally {
-            createStoryViewModel.postCreateStory(
-                imageFile = imageMultipart,
-                desc = dummyDesc,
-                lat = dummyLat,
-                lon = dummyLon
-            ).removeObserver(observer)
-        }
+        Mockito.verify(storyRepository).createStory(
+            imageFile = imageMultipart,
+            desc = dummyDesc,
+            lat = dummyLat,
+            lon = dummyLon
+        )
+        Assert.assertNotNull(actualResponse)
+        Assert.assertTrue(actualResponse is Result.Error)
     }
 }

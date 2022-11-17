@@ -56,6 +56,7 @@ class SettingViewModelTest {
 
             Mockito.verify(settingPreferences).getThemeSetting()
             Assert.assertNotNull(actualResponse)
+            Assert.assertTrue(true)
         } finally {
             settingViewModel.getThemeSettings().removeObserver(observer)
         }
