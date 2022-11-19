@@ -1,4 +1,4 @@
-package com.dicoding.storyapp.ui.create_story;
+package com.dicoding.storyapp.ui.create_story
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
