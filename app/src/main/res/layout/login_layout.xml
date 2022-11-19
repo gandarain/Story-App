@@ -14,7 +14,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal2"
-        app:srcCompat="@drawable/fantasy" />
+        app:srcCompat="@drawable/fantasy"
+        android:contentDescription="@string/login"/>
 
     <TextView
         android:id="@+id/emailTextView"
