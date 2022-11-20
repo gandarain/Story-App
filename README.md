@@ -22,4 +22,4 @@
 
 ### APK
 For the APK, please visit the release page. <br/>
-https://github.com/gandarain/Story-App/release
+https://github.com/gandarain/Story-App/releases
